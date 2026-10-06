@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Winter Hay Calculator: How Much Hay Do You Need? | Back Forty Tools</title>
+<meta name="description" content="Free winter hay calculator for horses, cattle, goats, sheep and donkeys. Enter your animals, feeding days and feeder type to get pounds, tons, bale count and cost, with waste built in.">
+<link rel="canonical" href="https://backfortytools.com/winter-hay-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Winter Hay Calculator: How Much Hay Do You Need?">
+<meta property="og:description" content="Pounds, tons, bales and cost for your whole herd, with feeder and storage waste built in.">
+<meta property="og:url" content="https://backfortytools.com/winter-hay-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Winter Hay Calculator","url":"https://backfortytools.com/winter-hay-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Estimate winter hay needs for horses, cattle, goats, sheep and donkeys including feeder and storage waste."},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How many bales of hay does a horse need for winter?","acceptedAnswer":{"@type":"Answer","text":"Roughly 80 to 100 fifty-pound square bales for an average 1,100-pound horse over a 150-day season, once you include normal waste. Longer winters, heavier horses and ground feeding push that past 120."}},
+{"@type":"Question","name":"How many round bales for one horse?","acceptedAnswer":{"@type":"Answer","text":"At 800 pounds per round bale and a 150-day season with ring-feeder waste, figure 4 to 5 bales per horse. A horse on a free-choice round bale with no ring will go through one about every 10 to 12 days."}},
+{"@type":"Question","name":"How much hay does a cow eat per day?","acceptedAnswer":{"@type":"Answer","text":"A dry 1,200-pound beef cow eats 24 to 30 pounds of hay a day. Nursing a calf that climbs to 30 to 36 pounds. Through a 150-day winter a single cow needs about two and a half tons after waste."}},
+{"@type":"Question","name":"Should I subtract grain from the hay number?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you feed a meaningful amount. Every pound of grain displaces roughly a pound of hay."}},
+{"@type":"Question","name":"Is it better to buy all my winter hay at once?","acceptedAnswer":{"@type":"Answer","text":"Usually. Late-summer and early-fall prices are lowest and quality is best. By February supply is thin."}}
+]}]}
+</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:1fr auto;row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+</style>
+</head>
+<body><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+
+
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Livestock</div>
+  <h1>How much hay do you need for winter?</h1>
+  <p class="lede">Enter your animals and how you feed. We figure daily intake, add storage and feeder waste the way extension agents do, and turn it into tons, bales and dollars.</p>
+</header>
+
+<section class="calc" aria-label="Winter hay calculator">
+  <form class="panel" id="hayform" autocomplete="off">
+    <h2>Your herd and your setup</h2>
+    <div class="grid">
+      <label>Animal
+        <select id="species">
+          <option value="horse" data-pct="2" data-wt="1100">Horse</option>
+          <option value="pony" data-pct="1.75" data-wt="600">Pony / mini</option>
+          <option value="donkey" data-pct="1.5" data-wt="500">Donkey</option>
+          <option value="cow" data-pct="2.5" data-wt="1200">Beef cow (dry)</option>
+          <option value="cow-lact" data-pct="3" data-wt="1200">Beef cow (nursing a calf)</option>
+          <option value="goat" data-pct="3.5" data-wt="140">Goat</option>
+          <option value="sheep" data-pct="3" data-wt="160">Sheep</option>
+          <option value="alpaca" data-pct="1.5" data-wt="150">Alpaca / llama</option>
+        </select>
+      </label>
+      <label>How many
+        <input id="count" type="number" min="1" step="1" value="2" inputmode="numeric">
+      </label>
+      <label>Average weight <small>pounds each</small>
+        <input id="weight" type="number" min="50" step="10" value="1100" inputmode="numeric">
+      </label>
+      <label>Hay intake <small>% of body weight per day</small>
+        <input id="pct" type="number" min="0.5" max="5" step="0.25" value="2" inputmode="decimal">
+      </label>
+      <label>Days you'll feed hay <small>North Georgia: ~150 (Nov–Mar)</small>
+        <input id="days" type="number" min="1" max="365" step="1" value="150" inputmode="numeric">
+      </label>
+      <label>Grain or feed fed <small>lbs per animal per day, subtracts from hay</small>
+        <input id="grain" type="number" min="0" step="0.5" value="0" inputmode="decimal">
+      </label>
+      <label>Feeder type <small>sets feeding waste</small>
+        <select id="feeder">
+          <option value="13">On the ground — 13% waste</option>
+          <option value="5" selected>Hay rack / net — 5%</option>
+          <option value="3">Basket or slow feeder — 3%</option>
+          <option value="20">Round bale, no ring — 20%</option>
+          <option value="9">Round bale in ring — 9%</option>
+        </select>
+      </label>
+      <label>Where it's stored <small>sets storage loss</small>
+        <select id="storage">
+          <option value="5" selected>Inside a barn — 5%</option>
+          <option value="12">Outside, tarped, on pallets — 12%</option>
+          <option value="25">Outside, uncovered — 25%</option>
+        </select>
+      </label>
+      <label>Bale weight <small>pounds</small>
+        <input id="bale" type="number" min="20" step="5" value="50" inputmode="numeric">
+      </label>
+      <label>Price per bale <small>$, leave 0 to skip</small>
+        <input id="price" type="number" min="0" step="0.25" value="8" inputmode="decimal">
+      </label>
+      <label>Safety margin <small>% extra for a late spring</small>
+        <input id="margin" type="number" min="0" max="50" step="5" value="10" inputmode="numeric">
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Buy this much</div>
+      <div class="big" id="r-bales">—</div>
+      <div class="sub" id="r-tons">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Hay eaten per day, whole herd</dt><dd id="r-daily">—</dd>
+      <dt>Eaten over the season</dt><dd id="r-eaten">—</dd>
+      <dt>Feeding waste</dt><dd id="r-fw">—</dd>
+      <dt>Storage loss</dt><dd id="r-sw">—</dd>
+      <dt>Safety margin</dt><dd id="r-mg">—</dd>
+      <dt class="total">Total to put up</dt><dd class="total" id="r-total">—</dd>
+      <dt class="total">Estimated cost</dt><dd class="total cost" id="r-cost">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+
+<section class="gear" aria-label="Recommended gear">
+  <h2>Cut the waste before you buy more hay</h2>
+  <p>Every point of waste above is hay you paid for and never fed. These are the fixes that move the number the most.</p>
+  <ul>
+    <li><strong>Slow-feed hay net or basket feeder</strong><span>Drops ground waste from 13% to about 3%. On two horses that's roughly 20 bales a winter.</span><br><a href="https://www.tractorsupply.com/tsc/search/hay%20feeder" rel="sponsored nofollow" target="_blank">Shop hay feeders →</a></li>
+    <li><strong>Heavy hay tarp + pallets</strong><span>If your stack lives outside, getting it off the ground and under cover cuts storage loss in half.</span><br><a href="https://www.tractorsupply.com/tsc/search/hay%20tarp" rel="sponsored nofollow" target="_blank">Shop hay tarps →</a></li>
+    <li><strong>Livestock weight tape</strong><span>Your guess at body weight is probably 100 lb off. A $10 tape fixes the biggest input in this math.</span><br><a href="https://www.amazon.com/s?k=horse+weight+tape" rel="sponsored nofollow" target="_blank">Shop weight tapes →</a></li>
+    <li><strong>Round bale ring feeder</strong><span>Turns a 20% loss on an unprotected round bale into about 9%.</span><br><a href="https://www.tractorsupply.com/tsc/search/round%20bale%20feeder" rel="sponsored nofollow" target="_blank">Shop bale rings →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+
+<article>
+  <h2>How the calculator works</h2>
+  <p>Extension offices from North Carolina to Minnesota teach the same four-step method. We just do the arithmetic for you.</p>
+  <div class="formula">body weight × intake % × days × animals, then × (1 + feeding waste) × (1 + storage loss)</div>
+  <p>A mature horse eats about 2% of its body weight in hay each day when hay is the whole ration. For an 1,100-pound horse that's 22 pounds. Over a 150-day feeding season that is 3,300 pounds before waste. Add 5% storage loss and 13% ground-feeding waste and you're at roughly 3,900 pounds, almost two tons, or about 98 fifty-pound bales per horse.</p>
+
+  <h2>Daily hay intake by animal</h2>
+  <p>These are the defaults the calculator uses. Working animals, pregnant or nursing animals, and animals in hard cold need more; easy keepers on good pasture need less.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Animal</th><th>Typical weight</th><th>Hay as % of body weight</th><th>Pounds per day</th></tr></thead>
+    <tbody>
+      <tr><td>Horse (maintenance)</td><td>1,100 lb</td><td>1.5–2.5%</td><td>17–28</td></tr>
+      <tr><td>Pony or miniature</td><td>600 lb</td><td>1.5–2%</td><td>9–12</td></tr>
+      <tr><td>Donkey</td><td>500 lb</td><td>1.25–1.75%</td><td>6–9</td></tr>
+      <tr><td>Beef cow, dry</td><td>1,200 lb</td><td>2–2.5%</td><td>24–30</td></tr>
+      <tr><td>Beef cow, nursing</td><td>1,200 lb</td><td>2.5–3%</td><td>30–36</td></tr>
+      <tr><td>Goat</td><td>140 lb</td><td>3–4%</td><td>4–6</td></tr>
+      <tr><td>Sheep</td><td>160 lb</td><td>2.5–3.5%</td><td>4–6</td></tr>
+      <tr><td>Alpaca / llama</td><td>150 lb</td><td>1.25–1.75%</td><td>2–3</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>How much hay gets wasted</h2>
+  <p>University of Minnesota researchers measured how much hay horses trample, soil and refuse with different feeders. Feeding small square bales on bare ground wasted about 13%. A hay rack cut that to 5%, and a basket-style feeder to 3%. For round bales with no feeder at all, losses run 20% or more; a ring feeder brings it near 9%.</p>
+  <p>Storage matters just as much. Hay kept dry inside a barn loses about 5% to spoilage and handling. Stacked outside under a tarp on pallets, expect 10–15%. Left uncovered on the ground, a quarter of the stack can rot before you feed it.</p>
+
+  <h2>How many days will you feed hay?</h2>
+  <p>Count from when your pasture quits growing to when it comes back strong enough to carry the animals. In the Southeast that is usually November through March, about 150 days. Across the Midwest and Northeast plan on 180–210 days. If you overseed winter rye or stockpile fescue, you can trim a few weeks off.</p>
+
+  <h2>Bale weights are not what the seller says</h2>
+  <p>"Fifty-pound squares" range from 35 to 70 pounds depending on the baler, the cut and how dry it was. Round bales run anywhere from 600 to 1,500 pounds. Weigh a few bales on a bathroom scale (hold one, subtract yourself) before you trust a bale count. Buying by the ton is the only way to compare prices fairly.</p>
+
+  <h2>Frequently asked</h2>
+  <details><summary>How many bales of hay does a horse need for winter?</summary><p>Roughly 80–100 fifty-pound square bales for an average 1,100-pound horse over a 150-day season, once you include normal waste. Longer winters, heavier horses and ground feeding push that past 120.</p></details>
+  <details><summary>How many round bales for one horse?</summary><p>At 800 pounds per round bale and a 150-day season with ring-feeder waste, figure 4–5 bales per horse. A horse on a free-choice round bale with no ring will go through one about every 10–12 days.</p></details>
+  <details><summary>How much hay does a cow eat per day?</summary><p>A dry 1,200-pound beef cow eats 24–30 pounds of hay a day. Once she's nursing a calf that climbs to 30–36 pounds. Through a 150-day winter, a single cow needs about two and a half tons after waste.</p></details>
+  <details><summary>Should I subtract grain from the hay number?</summary><p>Yes, if you feed a meaningful amount. Total dry-matter intake stays near 2% of body weight, so every pound of grain displaces roughly a pound of hay. The calculator does this when you enter a grain amount.</p></details>
+  <details><summary>Is it better to buy all my winter hay at once?</summary><p>Usually. Late-summer and early-fall prices are lowest and the quality is best. By February supply is thin and whatever is left is often the hay nobody wanted in September.</p></details>
+</article>
+
+<footer>
+  Formulas and waste rates from NC State Extension, University of Maryland Extension, University of Minnesota equine research and Oregon State Small Farms. Estimates only. Watch body condition through the winter and adjust.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={species:$('species'),count:$('count'),weight:$('weight'),pct:$('pct'),days:$('days'),grain:$('grain'),feeder:$('feeder'),storage:$('storage'),bale:$('bale'),price:$('price'),margin:$('margin')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var usd=function(n){return '$'+fmt(n,0)};
+  var last='';
+
+  function calc(){
+    var count=Math.max(0,+f.count.value||0), wt=Math.max(0,+f.weight.value||0), pct=Math.max(0,+f.pct.value||0);
+    var days=Math.max(0,+f.days.value||0), grain=Math.max(0,+f.grain.value||0);
+    var fw=(+f.feeder.value||0)/100, sw=(+f.storage.value||0)/100, bale=Math.max(1,+f.bale.value||50);
+    var price=Math.max(0,+f.price.value||0), mg=Math.max(0,+f.margin.value||0)/100;
+
+    var perDay=Math.max(0, wt*pct/100 - grain);
+    var daily=perDay*count;
+    var eaten=daily*days;
+    var feedWaste=eaten*fw;
+    var afterFeed=eaten+feedWaste;
+    var storeWaste=afterFeed*sw;
+    var base=afterFeed+storeWaste;
+    var margin=base*mg;
+    var total=base+margin;
+    var bales=Math.ceil(total/bale);
+    var tons=total/2000;
+    var cost=price>0?bales*price:null;
+
+    $('r-bales').textContent=fmt(bales)+' bales';
+    $('r-tons').textContent=fmt(tons,1)+' tons at '+fmt(bale)+' lb per bale';
+    $('r-daily').textContent=fmt(daily,1)+' lb';
+    $('r-eaten').textContent=fmt(eaten)+' lb';
+    $('r-fw').textContent='+ '+fmt(feedWaste)+' lb';
+    $('r-sw').textContent='+ '+fmt(storeWaste)+' lb';
+    $('r-mg').textContent='+ '+fmt(margin)+' lb';
+    $('r-total').textContent=fmt(total)+' lb';
+    $('r-cost').textContent=cost==null?'—':usd(cost);
+    var sp=f.species.options[f.species.selectedIndex].text;
+    $('r-note').textContent=count+' '+sp.toLowerCase()+(count==1?'':'s')+' × '+fmt(perDay,1)+' lb hay/day each × '+days+' days'+(grain?' (after '+grain+' lb grain)':'')+'. Round bales: divide pounds by your bale weight.';
+
+    last='Winter hay estimate: '+count+' '+sp+' at '+fmt(wt)+' lb, '+pct+'% BW, '+days+' days. Eaten '+fmt(eaten)+' lb, waste '+fmt(feedWaste+storeWaste)+' lb, margin '+fmt(margin)+' lb. Buy '+fmt(total)+' lb = '+fmt(tons,1)+' tons = '+bales+' bales @ '+bale+' lb'+(cost!=null?' ≈ '+usd(cost):'')+'.';
+  }
+
+  f.species.addEventListener('change',function(){
+    var o=f.species.options[f.species.selectedIndex];
+    f.pct.value=o.getAttribute('data-pct'); f.weight.value=o.getAttribute('data-wt'); calc();
+  });
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); });
+  $('hayform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){
+    f.species.value='horse';f.count.value=2;f.weight.value=1100;f.pct.value=2;f.days.value=150;f.grain.value=0;f.feeder.value='5';f.storage.value='5';f.bale.value=50;f.price.value=8;f.margin.value=10;calc();
+  });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,function(){fallback()})}else{fallback()}
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+  });
+  calc();
+})();
+</script>
+
+</body>
+</html>
