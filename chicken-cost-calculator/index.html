@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backyard Chicken Cost Calculator: Cost Per Dozen Eggs | Back Forty Tools</title>
+<meta name="description" content="Free backyard chicken cost calculator. Enter your hens, feed price and egg rate to get monthly cost, cost per dozen, yearly savings versus store eggs and when your coop pays for itself.">
+<link rel="canonical" href="https://backfortytools.com/chicken-cost-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Backyard Chicken Cost Calculator">
+<meta property="og:description" content="Free backyard chicken cost calculator. Enter your hens, feed price and egg rate to get monthly cost, cost per dozen, yearly savings versus store eggs and when your coop pays for itself.">
+<meta property="og:url" content="https://backfortytools.com/chicken-cost-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Backyard Chicken Cost Calculator", "url": "https://backfortytools.com/chicken-cost-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free backyard chicken cost calculator. Enter your hens, feed price and egg rate to get monthly cost, cost per dozen, yearly savings versus store eggs and when your coop pays for itself.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does it cost to feed 6 chickens a month?", "acceptedAnswer": {"@type": "Answer", "text": "About one 50-pound bag of layer feed, $18 to $24 depending on brand and region. Add bedding and grit and six hens cost $30 to $40 a month to keep."}}, {"@type": "Question", "name": "Is it cheaper to raise chickens or buy eggs?", "acceptedAnswer": {"@type": "Answer", "text": "Cheaper than pasture-raised or organic store eggs, more expensive than the cheapest conventional eggs. Most backyard flocks produce eggs for $2.50 to $3.50 a dozen in feed and supplies once the coop is paid off."}}, {"@type": "Question", "name": "How many eggs will 6 chickens lay?", "acceptedAnswer": {"@type": "Answer", "text": "Around 25 to 30 eggs a week in the first year, roughly two dozen. Expect that to fall to 15 to 20 a week by year three."}}, {"@type": "Question", "name": "How long does a chicken coop take to pay for itself?", "acceptedAnswer": {"@type": "Answer", "text": "A $600 setup with six hens saving $2 a dozen versus store eggs pays off in about two and a half years. Buying chicks instead of pullets and building the coop from scrap can cut that to a year."}}, {"@type": "Question", "name": "How much feed does a chicken eat per day?", "acceptedAnswer": {"@type": "Answer", "text": "A standard laying hen eats about 4 ounces (a quarter pound) a day. Bantams eat half that; big dual-purpose breeds up to 5 ounces."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Poultry</div>
+  <h1>What do backyard chickens really cost?</h1>
+  <p class="lede">Feed, bedding and your coop, turned into a cost per dozen and a payback date. Change any number and see what moves.</p>
+</header>
+<section class="calc" aria-label="Backyard chicken cost calculator">
+  <form class="panel" id="chxform" autocomplete="off">
+    <h2>Your flock</h2>
+    <div class="grid">
+      <label>Laying hens
+        <input id="hens" type="number" min="1" max="500" step="1" value="6" inputmode="numeric">
+      </label>
+      <label>Feed per hen per day <small>ounces; 4 is typical for layers</small>
+        <input id="oz" type="number" min="1" max="10" step="0.5" value="4" inputmode="decimal">
+      </label>
+      <label>Feed price <small>$ per 50 lb bag</small>
+        <input id="bag" type="number" min="1" step="0.5" value="20" inputmode="decimal">
+      </label>
+      <label>Free-range or kitchen scraps <small>% of feed they find themselves</small>
+        <input id="forage" type="number" min="0" max="60" step="5" value="10" inputmode="numeric">
+      </label>
+      <label>Eggs per hen per week <small>5 in peak season, 3 for older hens or winter</small>
+        <input id="eggs" type="number" min="0" max="7" step="0.5" value="4.5" inputmode="decimal">
+      </label>
+      <label>Bedding, grit, oyster shell, misc. <small>$ per month</small>
+        <input id="misc" type="number" min="0" step="1" value="12" inputmode="numeric">
+      </label>
+      <label>Startup spent <small>$ coop, run, feeders, birds</small>
+        <input id="startup" type="number" min="0" step="25" value="650" inputmode="numeric">
+      </label>
+      <label>Store price you'd otherwise pay <small>$ per dozen</small>
+        <input id="store" type="number" min="0" step="0.25" value="4.50" inputmode="decimal">
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Your cost per dozen</div>
+      <div class="big" id="r-dozen">—</div>
+      <div class="sub" id="r-vs">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Feed per month, whole flock</dt><dd id="r-feedlb">—</dd>
+      <dt>Bags per month</dt><dd id="r-bags">—</dd>
+      <dt>Feed cost per month</dt><dd id="r-feed">—</dd>
+      <dt>Bedding and extras</dt><dd id="r-misc">—</dd>
+      <dt class="total">Total per month</dt><dd class="total" id="r-month">—</dd>
+      <dt>Per hen per month</dt><dd id="r-perhen">—</dd>
+      <dt class="total">Eggs per month</dt><dd class="total" id="r-eggs">—</dd>
+      <dt>Dozens per month</dt><dd id="r-doz">—</dd>
+      <dt class="total">Yearly savings vs. store</dt><dd class="total cost" id="r-save">—</dd>
+      <dt>Startup pays off in</dt><dd id="r-payback">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Where the money leaks out of a small flock</h2>
+  <p>Most of the gap between a $2.50 dozen and a $4 dozen is feed on the ground and water that froze.</p>
+  <ul>
+<li><strong>Treadle or no-waste feeder</strong><span>Stops the 20% that gets raked onto the ground and feeds the rats. Biggest single saving on this page.</span><br><a href="https://www.tractorsupply.com/tsc/search/treadle%20chicken%20feeder" rel="sponsored nofollow" target="_blank">Shop feeders →</a></li>
+<li><strong>Automatic coop door</strong><span>Opens at dawn, closes at dusk. Lets you leave for a weekend without a chicken sitter.</span><br><a href="https://www.amazon.com/s?k=automatic+chicken+coop+door" rel="sponsored nofollow" target="_blank">Shop coop doors →</a></li>
+<li><strong>Heated waterer base</strong><span>One frozen waterer in January costs more eggs than the base does.</span><br><a href="https://www.tractorsupply.com/tsc/search/heated%20poultry%20waterer" rel="sponsored nofollow" target="_blank">Shop heated waterers →</a></li>
+<li><strong>Egg cartons, flats and date stamps</strong><span>If you'll sell a few dozen, clean cartons are the difference between $3 and $5 a dozen.</span><br><a href="https://www.amazon.com/s?k=egg+cartons+bulk" rel="sponsored nofollow" target="_blank">Shop egg cartons →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>Feed is 70 to 80 percent of what a laying flock costs once the coop is built, so the math starts there.</p>
+  <div class="formula">hens × ounces per day × 30 ÷ 16 = pounds of feed per month, then ÷ 50 × bag price</div>
+  <p>A laying hen eats about a quarter pound of feed a day, roughly 1.75 pounds a week or 7.5 pounds a month. Six hens go through 45 pounds a month, which is one 50-pound bag. At $20 a bag that is $20 in feed for about 115 eggs, or just under $2.10 a dozen before bedding and grit. Add those and most small flocks land between $2.50 and $3.50 a dozen, which beats pasture-raised eggs at the store and loses to the cheapest factory eggs.</p>
+
+  <h2>What a hen really eats</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Bird</th><th>Feed per day</th><th>Per month</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Bantam hen</td><td>2 oz</td><td>3.75 lb</td><td>Small eggs, small appetite</td></tr>
+      <tr><td>Standard layer (Leghorn, sex-link)</td><td>3.5–4 oz</td><td>6.5–7.5 lb</td><td>Most efficient converters</td></tr>
+      <tr><td>Dual-purpose (Orpington, Rock, Wyandotte)</td><td>4–5 oz</td><td>7.5–9.5 lb</td><td>Bigger bird, eats more</td></tr>
+      <tr><td>Meat bird (Cornish Cross)</td><td>6–8 oz</td><td>n/a</td><td>8 weeks to butcher</td></tr>
+      <tr><td>Chick, 0–8 weeks</td><td>1–2 oz</td><td>about 10 lb total starter</td><td>Starter feed costs more per bag</td></tr>
+    </tbody>
+  </table></div>
+  <p>Hens eat more in cold weather and when they are molting, and less when they free-range on good pasture. Feed waste from open trough feeders can run 20 percent or more; a treadle or hanging feeder with a lip pays for itself in a few months.</p>
+
+  <h2>How many eggs to expect</h2>
+  <p>A good production hen in her first year lays 250 to 300 eggs, about five a week. Heritage and dual-purpose breeds lay 180 to 220. Production drops roughly 15 to 20 percent each year after the first, and nearly all hens slow or stop for a few weeks during the fall molt and the short days of winter unless you add light. Over a hen's productive life, 4 eggs a week is a fair average to plan on.</p>
+
+  <h2>Startup costs</h2>
+  <p>A used or self-built coop with a run for six hens runs $200 to $500; a prefab kit $300 to $800; a built-to-last walk-in coop $1,000 and up. Chicks cost $4 to $7 each, started pullets $25 to $35. Add a feeder, waterer, heat lamp for the brooder and a bag of starter and most people are into a first flock of six for $500 to $900. The calculator spreads that over the eggs you collect so you can see when the coop has paid for itself.</p>
+
+  <h2>Ways to bring the cost down</h2>
+  <p>Buy feed by the bag from a farm store rather than a pet store, or split a pallet with a neighbor. Ferment the feed (soak it two to three days) and most people see 10 to 20 percent less consumption. Let the birds free-range an hour before dusk so they forage without wandering. Sell a few dozen a week to coworkers at $5 and the flock turns a small profit on paper.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How much does it cost to feed 6 chickens a month?</summary><p>About one 50-pound bag of layer feed, $18 to $24 depending on brand and region. Add bedding and grit and six hens cost $30 to $40 a month to keep.</p></details>
+<details><summary>Is it cheaper to raise chickens or buy eggs?</summary><p>Cheaper than pasture-raised or organic store eggs, more expensive than the cheapest conventional eggs. Most backyard flocks produce eggs for $2.50 to $3.50 a dozen in feed and supplies once the coop is paid off.</p></details>
+<details><summary>How many eggs will 6 chickens lay?</summary><p>Around 25 to 30 eggs a week in the first year, roughly two dozen. Expect that to fall to 15 to 20 a week by year three.</p></details>
+<details><summary>How long does a chicken coop take to pay for itself?</summary><p>A $600 setup with six hens saving $2 a dozen versus store eggs pays off in about two and a half years. Buying chicks instead of pullets and building the coop from scrap can cut that to a year.</p></details>
+<details><summary>How much feed does a chicken eat per day?</summary><p>A standard laying hen eats about 4 ounces (a quarter pound) a day. Bantams eat half that; big dual-purpose breeds up to 5 ounces.</p></details>
+</article>
+<footer>
+  Feed intake and lay rates from Oklahoma State Extension, Tennessee State Extension and the University of Kentucky poultry program. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={hens:$('hens'),oz:$('oz'),bag:$('bag'),forage:$('forage'),eggs:$('eggs'),misc:$('misc'),startup:$('startup'),store:$('store')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var usd=function(n,d){return '$'+fmt(n,d==null?2:d)};
+  var last='';
+  function calc(){
+    var hens=+f.hens.value||0, oz=+f.oz.value||0, bag=+f.bag.value||0, forage=(+f.forage.value||0)/100;
+    var eggs=+f.eggs.value||0, misc=+f.misc.value||0, startup=+f.startup.value||0, store=+f.store.value||0;
+    var feedLb=hens*oz*30.4/16*(1-forage);
+    var bags=feedLb/50;
+    var feedCost=bags*bag;
+    var month=feedCost+misc;
+    var eggsMo=hens*eggs*30.4/7;
+    var doz=eggsMo/12;
+    var perDoz=doz>0?month/doz:null;
+    var yearSave=(store*doz-month)*12;
+    var payback=yearSave>0?startup/yearSave*12:null;
+    $('r-dozen').textContent=perDoz==null?'—':usd(perDoz);
+    $('r-vs').textContent=perDoz==null?'no eggs, no dozen':(perDoz<store?usd(store-perDoz)+' less than the store':usd(perDoz-store)+' more than the store');
+    $('r-feedlb').textContent=fmt(feedLb)+' lb';
+    $('r-bags').textContent=fmt(bags,1);
+    $('r-feed').textContent=usd(feedCost);
+    $('r-misc').textContent=usd(misc);
+    $('r-month').textContent=usd(month);
+    $('r-perhen').textContent=hens?usd(month/hens):'—';
+    $('r-eggs').textContent=fmt(eggsMo);
+    $('r-doz').textContent=fmt(doz,1);
+    $('r-save').textContent=(yearSave>=0?'+':'−')+usd(Math.abs(yearSave),0);
+    $('r-payback').textContent=payback==null?'never at these prices':(payback<1?'under a month':fmt(payback,0)+' months');
+    $('r-note').textContent='Running cost only; startup is used for the payback line. Add a bag of starter and a few months of no eggs if you begin with chicks.';
+    last='Chicken cost: '+hens+' hens, '+fmt(feedLb)+' lb feed/mo ('+fmt(bags,1)+' bags @ '+usd(bag)+') = '+usd(feedCost)+' + '+usd(misc)+' extras = '+usd(month)+'/mo. '+fmt(eggsMo)+' eggs/mo = '+fmt(doz,1)+' dozen → '+(perDoz==null?'n/a':usd(perDoz))+'/dozen vs '+usd(store)+' store. Yearly '+(yearSave>=0?'savings ':'loss ')+usd(Math.abs(yearSave),0)+(payback?'; startup pays back in '+fmt(payback,0)+' months':'')+'.';
+  }
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); });
+  $('chxform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.hens.value=6;f.oz.value=4;f.bag.value=20;f.forage.value=10;f.eggs.value=4.5;f.misc.value=12;f.startup.value=650;f.store.value=4.50;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

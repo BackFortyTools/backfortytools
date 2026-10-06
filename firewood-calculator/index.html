@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firewood Calculator: How Many Cords Do You Need? | Back Forty Tools</title>
+<meta name="description" content="Free firewood calculator. Enter square footage, climate, stove type and wood species to get full cords, face cords, pickup loads and cost for the season, plus a stack-to-cord converter.">
+<link rel="canonical" href="https://backfortytools.com/firewood-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Firewood Calculator">
+<meta property="og:description" content="Free firewood calculator. Enter square footage, climate, stove type and wood species to get full cords, face cords, pickup loads and cost for the season, plus a stack-to-cord converter.">
+<meta property="og:url" content="https://backfortytools.com/firewood-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Firewood Calculator", "url": "https://backfortytools.com/firewood-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free firewood calculator. Enter square footage, climate, stove type and wood species to get full cords, face cords, pickup loads and cost for the season, plus a stack-to-cord converter.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many cords of wood do I need for winter?", "acceptedAnswer": {"@type": "Answer", "text": "Most homes heated primarily with wood burn 3 to 5 cords a season. In the Southeast, 1 to 2 cords per 1,000 square feet; in the North, 3 to 4. Supplemental burners need about half that."}}, {"@type": "Question", "name": "How much wood is a face cord?", "acceptedAnswer": {"@type": "Answer", "text": "One third of a full cord when the pieces are cut 16 inches long: a stack 4 feet high by 8 feet long by 16 inches deep. A 12-inch face cord is a quarter cord."}}, {"@type": "Question", "name": "How long does a cord of wood last?", "acceptedAnswer": {"@type": "Answer", "text": "Burning as primary heat in a cold climate, about a month. As supplemental evening heat in a mild climate, a full season. Most families with an EPA stove in the mid-South get 6 to 8 weeks of steady heating per cord."}}, {"@type": "Question", "name": "How much does a cord of firewood cost?", "acceptedAnswer": {"@type": "Answer", "text": "In 2026, $200 to $350 delivered for seasoned mixed hardwood in most of the country, more near big cities and in the Northeast, less in rural areas with lots of timber. A face cord usually sells for $80 to $130."}}, {"@type": "Question", "name": "How many pickup loads are in a cord?", "acceptedAnswer": {"@type": "Answer", "text": "A standard half-ton pickup with an 8-foot bed holds about a third of a cord stacked level, a bit more heaped. Three full loads is roughly one cord."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Wood heat</div>
+  <h1>How many cords of firewood do you need?</h1>
+  <p class="lede">House size, climate, stove and species in; full cords, face cords, pickup loads and dollars out. Plus a stack converter so nobody sells you a face cord as a cord.</p>
+</header>
+<section class="calc" aria-label="Firewood calculator">
+  <form class="panel" id="fwform" autocomplete="off">
+    <h2>Your house and your stove</h2>
+    <div class="grid">
+      <label>Heated space <small>square feet</small>
+        <input id="sqft" type="number" min="200" max="8000" step="50" value="1800" inputmode="numeric">
+      </label>
+      <label>Climate
+        <select id="climate">
+          <option value="1.5" selected>Southeast / Gulf (GA, AL, TN, Carolinas)</option>
+          <option value="2.5">Mid-Atlantic / lower Midwest (VA, KY, MO, OH)</option>
+          <option value="3.5">North / New England / upper Midwest</option>
+          <option value="4.5">Far north / mountain (MN, ND, MT, northern ME)</option>
+          <option value="1.0">Mild West Coast / Southwest</option>
+        </select>
+      </label>
+      <label>Wood is your…
+        <select id="use">
+          <option value="1" selected>Primary heat</option>
+          <option value="0.45">Supplemental (evenings, cold snaps)</option>
+          <option value="0.12">Occasional fires</option>
+        </select>
+      </label>
+      <label>Insulation
+        <select id="insul">
+          <option value="0.85">Tight, newer house</option>
+          <option value="1" selected>Average</option>
+          <option value="1.3">Drafty, old or uninsulated</option>
+        </select>
+      </label>
+      <label>What you burn in
+        <select id="stove">
+          <option value="1" selected>EPA wood stove or insert (2015+)</option>
+          <option value="1.3">Older stove or insert</option>
+          <option value="1.15">Outdoor wood boiler</option>
+          <option value="2.2">Open fireplace</option>
+        </select>
+      </label>
+      <label>Wood species
+        <select id="species">
+          <option value="21" selected>Mixed hardwood</option>
+          <option value="27">Hickory</option>
+          <option value="24">Oak (red or white)</option>
+          <option value="24">Sugar maple / beech</option>
+          <option value="20">Ash / red maple</option>
+          <option value="18">Cherry / elm</option>
+          <option value="15">Pine / fir / spruce</option>
+          <option value="13">Poplar / sweetgum / cottonwood</option>
+        </select>
+      </label>
+      <label>Price per full cord <small>$ delivered; 0 if you cut your own</small>
+        <input id="price" type="number" min="0" step="10" value="250" inputmode="numeric">
+      </label>
+      <label>Wood you already have <small>full cords</small>
+        <input id="have" type="number" min="0" step="0.25" value="0" inputmode="decimal">
+      </label>
+    </div>
+    <h2 style="margin-top:20px">Stack to cords</h2>
+    <div class="grid">
+      <label>Stack length <small>feet</small><input id="sl" type="number" min="0" step="0.5" value="16" inputmode="decimal"></label>
+      <label>Stack height <small>feet</small><input id="sh" type="number" min="0" step="0.5" value="4" inputmode="decimal"></label>
+      <label>Piece length <small>inches</small><input id="sw" type="number" min="8" max="48" step="1" value="16" inputmode="numeric"></label>
+      <label>That stack is<input id="stack-out" type="text" readonly value="—"></label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Cords for the season</div>
+      <div class="big" id="r-cords">—</div>
+      <div class="sub" id="r-range">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Base for your size and climate</dt><dd id="r-base">—</dd>
+      <dt>Adjusted for how you use it</dt><dd id="r-use">—</dd>
+      <dt>Adjusted for house and stove</dt><dd id="r-adj">—</dd>
+      <dt>Adjusted for wood species</dt><dd id="r-sp">—</dd>
+      <dt class="total">Face cords (16-inch)</dt><dd class="total" id="r-face">—</dd>
+      <dt>Pickup loads (½ ton, ~⅓ cord)</dt><dd id="r-loads">—</dd>
+      <dt>Stack footprint, 4 ft high</dt><dd id="r-stack">—</dd>
+      <dt class="total">Still need to buy or cut</dt><dd class="total" id="r-need">—</dd>
+      <dt class="total">Cost for the season</dt><dd class="total cost" id="r-cost">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Burn less wood for the same heat</h2>
+  <p>Dry wood in a hot stove is the whole game. These are the cheap tools that get you there.</p>
+  <ul>
+<li><strong>Moisture meter</strong><span>$20 settles every argument with a wood seller and tells you which stack is ready to burn.</span><br><a href="https://www.amazon.com/s?k=firewood+moisture+meter" rel="sponsored nofollow" target="_blank">Shop moisture meters →</a></li>
+<li><strong>Firewood rack with cover</strong><span>Off the ground and covered on top only, wood seasons in half the time and stays dry for the stove.</span><br><a href="https://www.amazon.com/s?k=outdoor+firewood+rack+with+cover" rel="sponsored nofollow" target="_blank">Shop firewood racks →</a></li>
+<li><strong>Kindling splitter</strong><span>The safe way to make kindling, and the thing that gets a cold stove drawing in five minutes.</span><br><a href="https://www.amazon.com/s?k=kindling+splitter" rel="sponsored nofollow" target="_blank">Shop kindling splitters →</a></li>
+<li><strong>Stove thermometer</strong><span>Shows the burn zone so you stop smoldering wood you worked hard to cut.</span><br><a href="https://www.amazon.com/s?k=wood+stove+thermometer+magnetic" rel="sponsored nofollow" target="_blank">Shop stove thermometers →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>The old rule is cords per thousand square feet, set by climate. We start there and then correct for the things that actually change the number: how much of your heat comes from wood, how tight the house is, how efficient the stove is, and how much heat is in the wood you burn.</p>
+  <div class="formula">(sq ft ÷ 1,000) × climate cords × use × insulation × stove × (21 ÷ species BTU)</div>
+  <p>An 1,800-square-foot house in north Georgia heated mostly with an EPA stove burning mixed hardwood needs about 2.7 cords. The same house in Vermont needs more than 6. Switch to seasoned oak and both numbers drop about 12 percent, because a cord of oak carries more heat than a cord of mixed wood.</p>
+
+  <h2>Cords per 1,000 square feet by region</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Region</th><th>Primary heat</th><th>Supplemental</th></tr></thead>
+    <tbody>
+      <tr><td>Southeast and Gulf</td><td>1–2 cords</td><td>½–1 cord</td></tr>
+      <tr><td>Mid-Atlantic, lower Midwest</td><td>2–3 cords</td><td>1–1½ cords</td></tr>
+      <tr><td>Northeast, upper Midwest</td><td>3–4 cords</td><td>1½–2 cords</td></tr>
+      <tr><td>Far north and mountain West</td><td>4–5 cords</td><td>2 cords</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What a cord actually is</h2>
+  <p>A full cord is a stack 4 feet high, 4 feet deep and 8 feet long: 128 cubic feet, about 85 of it solid wood. A "face cord," "rick" or "rack" is one row of that stack, 4 by 8, and its depth is however long the pieces are cut. With 16-inch firewood a face cord is one third of a full cord. Sellers who quote a "cord" of 16-inch wood for a suspiciously low price are often selling a face cord. Ask for the stacked dimensions, then use the stack converter above.</p>
+
+  <h2>Heat in a cord, by species</h2>
+  <p>Seasoned hardwood at 20 percent moisture, millions of BTU per full cord.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Species</th><th>Million BTU / cord</th><th>Compared to mixed hardwood</th></tr></thead>
+    <tbody>
+      <tr><td>Hickory, black locust, osage orange</td><td>27–30</td><td>burns 25–40% longer</td></tr>
+      <tr><td>White oak, red oak, sugar maple, beech</td><td>24–26</td><td>burns 15–20% longer</td></tr>
+      <tr><td>Ash, red maple, black walnut</td><td>20–21</td><td>about the same</td></tr>
+      <tr><td>Cherry, elm, sycamore</td><td>18–20</td><td>10% shorter</td></tr>
+      <tr><td>Southern yellow pine, fir</td><td>15–17</td><td>25% shorter</td></tr>
+      <tr><td>Poplar, sweetgum, cottonwood, willow</td><td>12–14</td><td>40% shorter</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Seasoning changes everything</h2>
+  <p>Green wood is nearly half water by weight. Burning it spends a third of its heat boiling that water off and sends the rest up the chimney as creosote. Oak needs 12 to 24 months split and stacked off the ground; softer hardwoods and pine 6 to 12. A $20 moisture meter tells you where a split stands: under 20 percent is ready. If you are buying "seasoned" wood in October, assume it is not, and buy next winter's wood this year.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How many cords of wood do I need for winter?</summary><p>Most homes heated primarily with wood burn 3 to 5 cords a season. In the Southeast, 1 to 2 cords per 1,000 square feet; in the North, 3 to 4. Supplemental burners need about half that.</p></details>
+<details><summary>How much wood is a face cord?</summary><p>One third of a full cord when the pieces are cut 16 inches long: a stack 4 feet high by 8 feet long by 16 inches deep. A 12-inch face cord is a quarter cord.</p></details>
+<details><summary>How long does a cord of wood last?</summary><p>Burning as primary heat in a cold climate, about a month. As supplemental evening heat in a mild climate, a full season. Most families with an EPA stove in the mid-South get 6 to 8 weeks of steady heating per cord.</p></details>
+<details><summary>How much does a cord of firewood cost?</summary><p>In 2026, $200 to $350 delivered for seasoned mixed hardwood in most of the country, more near big cities and in the Northeast, less in rural areas with lots of timber. A face cord usually sells for $80 to $130.</p></details>
+<details><summary>How many pickup loads are in a cord?</summary><p>A standard half-ton pickup with an 8-foot bed holds about a third of a cord stacked level, a bit more heaped. Three full loads is roughly one cord.</p></details>
+</article>
+<footer>
+  Regional cord estimates from University of Maine Extension, Penn State Extension and the US Forest Service firewood BTU tables. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={sqft:$('sqft'),climate:$('climate'),use:$('use'),insul:$('insul'),stove:$('stove'),species:$('species'),price:$('price'),have:$('have'),sl:$('sl'),sh:$('sh'),sw:$('sw')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var last='';
+  function calc(){
+    var sq=+f.sqft.value||0, cl=+f.climate.value, use=+f.use.value, ins=+f.insul.value, st=+f.stove.value, sp=+f.species.value||21;
+    var price=+f.price.value||0, have=+f.have.value||0;
+    var base=sq/1000*cl;
+    var afterUse=base*use;
+    var afterAdj=afterUse*ins*st;
+    var cords=afterAdj*(21/sp);
+    var lo=cords*0.8, hi=cords*1.25;
+    var face=cords*3, loads=cords*3;
+    var stackLen=cords*128/(4*4/3); // 4 ft high, 16 in deep -> length in feet
+    var need=Math.max(0,cords-have);
+    var cost=price>0?need*price:null;
+    $('r-cords').textContent=fmt(cords,1)+(cords===1?' cord':' cords');
+    $('r-range').textContent='full cords, likely '+fmt(lo,1)+' to '+fmt(hi,1);
+    $('r-base').textContent=fmt(base,1);
+    $('r-use').textContent=fmt(afterUse,1);
+    $('r-adj').textContent=fmt(afterAdj,1);
+    $('r-sp').textContent=fmt(cords,1);
+    $('r-face').textContent=fmt(face,1);
+    $('r-loads').textContent='~'+fmt(loads,0);
+    $('r-stack').textContent=fmt(stackLen,0)+' ft long × 16 in deep';
+    $('r-need').textContent=fmt(need,1)+' cords';
+    $('r-cost').textContent=cost==null?'your labor':'$'+fmt(cost,0);
+    $('r-note').textContent='Round up. A mild winter leaves you a head start on next year; a hard one with no wood in February costs double.';
+    // stack converter
+    var L=+f.sl.value||0,H=+f.sh.value||0,W=(+f.sw.value||0)/12;
+    var sc=L*H*W/128;
+    $('stack-out').value=sc>0?fmt(sc,2)+' cords ('+fmt(sc*3,1)+' face)':'—';
+    last='Firewood: '+fmt(sq)+' sq ft, climate factor '+cl+', '+f.use.options[f.use.selectedIndex].text+', '+f.species.options[f.species.selectedIndex].text+' → about '+fmt(cords,1)+' full cords ('+fmt(lo,1)+'–'+fmt(hi,1)+'), '+fmt(face,1)+' face cords. Have '+have+', need '+fmt(need,1)+(cost!=null?' ≈ $'+fmt(cost,0):'')+'.';
+  }
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); f[k].addEventListener('change',calc); });
+  $('fwform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.sqft.value=1800;f.climate.value='1.5';f.use.value='1';f.insul.value='1';f.stove.value='1';f.species.selectedIndex=0;f.price.value=250;f.have.value=0;f.sl.value=16;f.sh.value=4;f.sw.value=16;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

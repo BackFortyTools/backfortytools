@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deer Meat Yield Calculator: How Much Venison From Your Deer? | Back Forty Tools</title>
+<meta name="description" content="Free deer meat yield calculator. Enter live weight, field-dressed weight or chest girth and get pounds of boneless venison, cut-by-cut breakdown, freezer space and cost per pound.">
+<link rel="canonical" href="https://backfortytools.com/deer-meat-yield-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deer Meat Yield Calculator">
+<meta property="og:description" content="Free deer meat yield calculator. Enter live weight, field-dressed weight or chest girth and get pounds of boneless venison, cut-by-cut breakdown, freezer space and cost per pound.">
+<meta property="og:url" content="https://backfortytools.com/deer-meat-yield-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Deer Meat Yield Calculator", "url": "https://backfortytools.com/deer-meat-yield-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free deer meat yield calculator. Enter live weight, field-dressed weight or chest girth and get pounds of boneless venison, cut-by-cut breakdown, freezer space and cost per pound.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much meat do you get from a 150 lb deer?", "acceptedAnswer": {"@type": "Answer", "text": "If 150 pounds is the field-dressed weight, expect about 60 pounds of boneless venison with a clean shot. If it is the live weight, field-dressed will be around 117 pounds and the meat about 47 pounds."}}, {"@type": "Question", "name": "How much meat from a 100 lb doe?", "acceptedAnswer": {"@type": "Answer", "text": "A 100-pound field-dressed doe yields roughly 40 pounds of boneless meat. Does are often the better-eating deer because they carry more fat and no rut stress."}}, {"@type": "Question", "name": "What percentage of a deer is meat?", "acceptedAnswer": {"@type": "Answer", "text": "About 40% of field-dressed weight, or about 31% of live weight, ends up as boneless trimmed venison. Bone-in cuts raise the number to around 50% of field-dressed weight."}}, {"@type": "Question", "name": "How many pounds of meat does a deer processor give back?", "acceptedAnswer": {"@type": "Answer", "text": "Reputable processors return 38 to 45 pounds per 100 pounds field-dressed. If you are consistently getting back less than 35%, ask whether you are getting your own deer back."}}, {"@type": "Question", "name": "How much freezer space does a deer take?", "acceptedAnswer": {"@type": "Answer", "text": "About 1.5 cubic feet for an average 50-pound yield. Plan on 35 pounds of packaged meat per cubic foot of freezer."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Hunting & processing</div>
+  <h1>How much meat will your deer yield?</h1>
+  <p class="lede">Enter the weight you have (or just a chest girth) and where you hit it. We work it down from live weight to the pounds of venison you'll actually wrap, cut by cut.</p>
+</header>
+<section class="calc" aria-label="Deer meat yield calculator">
+  <form class="panel" id="deerform" autocomplete="off">
+    <h2>Your deer</h2>
+    <div class="grid">
+      <label>What did you weigh?
+        <select id="wtype">
+          <option value="fd" selected>Field-dressed weight (guts out)</option>
+          <option value="live">Live weight (whole deer)</option>
+          <option value="girth">I only have chest girth</option>
+        </select>
+      </label>
+      <label id="wrap-weight">Weight <small>pounds</small>
+        <input id="weight" type="number" min="20" max="400" step="1" value="130" inputmode="numeric">
+      </label>
+      <label id="wrap-girth" hidden>Chest girth <small>inches, just behind the front legs</small>
+        <input id="girth" type="number" min="20" max="60" step="0.5" value="36" inputmode="decimal">
+      </label>
+      <label>Shot placement <small>sets meat lost to damage</small>
+        <select id="shot">
+          <option value="0" selected>Behind the shoulder / neck / head — little loss</option>
+          <option value="8">One shoulder — about 8% lost</option>
+          <option value="15">Both shoulders or hindquarter — about 15% lost</option>
+          <option value="5">Gut shot, recovered quickly — about 5% lost</option>
+        </select>
+      </label>
+      <label>How it'll be cut
+        <select id="style">
+          <option value="std" selected>Steaks, roasts and ground</option>
+          <option value="ground">Mostly ground and sausage</option>
+          <option value="bonein">Bone-in cuts (chops, shanks)</option>
+        </select>
+      </label>
+      <label>Pork fat added to sausage/ground <small>% of batch, 0 if none</small>
+        <input id="fat" type="number" min="0" max="40" step="5" value="0" inputmode="numeric">
+      </label>
+      <label>Processor fee <small>$ per deer, 0 if you do it yourself</small>
+        <input id="fee" type="number" min="0" step="5" value="110" inputmode="numeric">
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Meat in the freezer</div>
+      <div class="big" id="r-meat">—</div>
+      <div class="sub" id="r-range">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Live weight</dt><dd id="r-live">—</dd>
+      <dt>Field-dressed weight</dt><dd id="r-fd">—</dd>
+      <dt>Hanging carcass (skinned, head off)</dt><dd id="r-carc">—</dd>
+      <dt>Lost to shot damage</dt><dd id="r-loss">—</dd>
+      <dt class="total">Backstraps + tenderloins</dt><dd class="total" id="r-back">—</dd>
+      <dt>Hindquarter steaks and roasts</dt><dd id="r-hind">—</dd>
+      <dt>Front shoulders</dt><dd id="r-front">—</dd>
+      <dt>Neck, flank and trim (ground)</dt><dd id="r-ground">—</dd>
+      <dt class="total">Freezer space</dt><dd class="total" id="r-freezer">—</dd>
+      <dt>One-pound packages</dt><dd id="r-pkgs">—</dd>
+      <dt>Meals (3 people per lb)</dt><dd id="r-meals">—</dd>
+      <dt class="total">Cost per pound</dt><dd class="total cost" id="r-cost">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Gear that gets more of that meat into the freezer</h2>
+  <p>The yield above assumes the deer was cooled fast and cut clean. These are the four things that make that happen.</p>
+  <ul>
+<li><strong>Electric meat grinder, ½ HP or larger</strong><span>The single purchase that turns one deer into a full freezer of burger, sausage and jerky. Pays for itself the second season.</span><br><a href="https://www.amazon.com/s?k=meat+grinder+electric+1%2F2+hp" rel="sponsored nofollow" target="_blank">Shop grinders →</a></li>
+<li><strong>Vacuum sealer + bags</strong><span>Doubles freezer life and stops the freezer burn that ruins the last ten pounds every spring.</span><br><a href="https://www.amazon.com/s?k=vacuum+sealer+for+game+meat" rel="sponsored nofollow" target="_blank">Shop vacuum sealers →</a></li>
+<li><strong>Gambrel and hoist</strong><span>Hang the deer at working height and skinning takes ten minutes instead of forty.</span><br><a href="https://www.tractorsupply.com/tsc/search/deer%20hoist%20gambrel" rel="sponsored nofollow" target="_blank">Shop hoists →</a></li>
+<li><strong>Breathable game bags</strong><span>Keep flies and dirt off the carcass while it cools. Cheap insurance for the meat you just calculated.</span><br><a href="https://www.amazon.com/s?k=deer+game+bags" rel="sponsored nofollow" target="_blank">Shop game bags →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>Wildlife biologists and university meat labs have weighed enough deer to settle the ratios. We use them in the order a deer actually comes apart.</p>
+  <div class="formula">live × 0.78 = field-dressed &nbsp;·&nbsp; field-dressed × 0.75 = hanging carcass &nbsp;·&nbsp; carcass × 0.55 ≈ boneless meat</div>
+  <p>Put together, a deer gives back about <strong>40% of its field-dressed weight</strong> as boneless, trimmed venison. A 130-pound field-dressed buck is roughly 52 pounds of meat in the freezer. Hunters who do their own cutting and save every scrap of trim can push that toward 45–50%. A shoulder-shot deer that sat overnight before it was found can drop under 35%.</p>
+
+  <h2>Field-dressed weight from live weight (and back)</h2>
+  <p>Field dressing removes about 22% of a whitetail: the gut pile, heart, lungs and blood. So a 165-pound live deer dresses to about 130 pounds. Skinning, removing the head and lower legs takes another 25%, leaving a hanging carcass near 97 pounds. Bone is roughly 45% of that carcass, which is why boneless yield lands where it does.</p>
+
+  <h2>Estimating weight from chest girth</h2>
+  <p>No scale in deer camp is normal. A tape measure around the chest, right behind the front legs, gets you close. These figures come from the Penn State and Mississippi State whitetail charts and the calculator uses the same table.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Chest girth</th><th>Live weight</th><th>Field-dressed</th><th>Boneless meat</th></tr></thead>
+    <tbody>
+      <tr><td>28 in</td><td>92 lb</td><td>72 lb</td><td>29 lb</td></tr>
+      <tr><td>32 in</td><td>120 lb</td><td>94 lb</td><td>37 lb</td></tr>
+      <tr><td>36 in</td><td>155 lb</td><td>121 lb</td><td>48 lb</td></tr>
+      <tr><td>40 in</td><td>197 lb</td><td>154 lb</td><td>61 lb</td></tr>
+      <tr><td>44 in</td><td>245 lb</td><td>191 lb</td><td>76 lb</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Where the meat is on a deer</h2>
+  <p>Of the boneless meat, about 10% is backstrap and tenderloin, 35% comes off the hindquarters as steaks and roasts, 20% is the front shoulders, and the remaining 35% is neck, flank, shank and trim that ends up as ground or sausage. If you tell a processor "all ground," you'll get the same total pounds, just in one shape. If you add pork fat to the ground, the package count goes up but the venison didn't.</p>
+
+  <h2>Freezer space</h2>
+  <p>Packed venison runs about 35 pounds per cubic foot. A single average deer takes 1.5 cubic feet; a 5-cubic-foot chest freezer holds three deer with room for the ice cream. Vacuum-sealed packages stack tighter and last two years instead of six months.</p>
+
+  <h2>Processing costs</h2>
+  <p>In Georgia and most of the Southeast, basic processing (skin, cut, wrap, ground) runs $90 to $140 per deer in 2026, with sausage, jerky and cubed steak extra. On a 50-pound deer that is about $2.20 a pound before your tag, gas and gear. Do it yourself with a $150 grinder and a $100 vacuum sealer and the gear pays for itself on the second deer.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How much meat do you get from a 150 lb deer?</summary><p>If 150 pounds is the field-dressed weight, expect about 60 pounds of boneless venison with a clean shot. If it is the live weight, field-dressed will be around 117 pounds and the meat about 47 pounds.</p></details>
+<details><summary>How much meat from a 100 lb doe?</summary><p>A 100-pound field-dressed doe yields roughly 40 pounds of boneless meat. Does are often the better-eating deer because they carry more fat and no rut stress.</p></details>
+<details><summary>What percentage of a deer is meat?</summary><p>About 40% of field-dressed weight, or about 31% of live weight, ends up as boneless trimmed venison. Bone-in cuts raise the number to around 50% of field-dressed weight.</p></details>
+<details><summary>How many pounds of meat does a deer processor give back?</summary><p>Reputable processors return 38 to 45 pounds per 100 pounds field-dressed. If you are consistently getting back less than 35%, ask whether you are getting your own deer back.</p></details>
+<details><summary>How much freezer space does a deer take?</summary><p>About 1.5 cubic feet for an average 50-pound yield. Plan on 35 pounds of packaged meat per cubic foot of freezer.</p></details>
+</article>
+<footer>
+  Dressing and carcass ratios from Penn State Extension, Mississippi State Deer Lab and the University of Wisconsin meat science program. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={wtype:$('wtype'),weight:$('weight'),girth:$('girth'),shot:$('shot'),style:$('style'),fat:$('fat'),fee:$('fee')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  // girth(in) -> live weight (lb), from Penn State / MSU whitetail charts
+  var G=[[26,77],[28,92],[30,105],[32,120],[34,137],[36,155],[38,175],[40,197],[42,220],[44,245],[46,270],[48,297],[50,325]];
+  function girthToLive(g){ if(g<=G[0][0])return G[0][1]; for(var i=1;i<G.length;i++){ if(g<=G[i][0]){var a=G[i-1],b=G[i];return a[1]+(b[1]-a[1])*(g-a[0])/(b[0]-a[0]);} } return G[G.length-1][1]*(g/G[G.length-1][0]); }
+  var last='';
+  function calc(){
+    var t=f.wtype.value, live, fd;
+    if(t==='girth'){ live=girthToLive(+f.girth.value||0); fd=live*0.78; }
+    else if(t==='live'){ live=+f.weight.value||0; fd=live*0.78; }
+    else { fd=+f.weight.value||0; live=fd/0.78; }
+    var carcass=fd*0.75;
+    var boneless=carcass*0.55;          // ~41% of FD
+    var shotLoss=boneless*((+f.shot.value||0)/100);
+    var meat=boneless-shotLoss;
+    var lo=meat*0.9, hi=meat*1.15;
+    var style=f.style.value;
+    var fat=(+f.fat.value||0)/100;
+    var back=meat*0.10, hind=meat*0.35, front=meat*0.20, ground=meat*0.35;
+    var pkgMeat=meat;
+    if(style==='ground'){ hind=0; front=0; ground=meat-back; }
+    if(style==='bonein'){ pkgMeat=meat*1.22; }
+    var groundOut=ground/(1-fat);        // fat adds to the ground batch
+    pkgMeat=pkgMeat+(groundOut-ground);
+    var freezer=pkgMeat/35;
+    var pkgs=Math.ceil(pkgMeat);
+    var meals=Math.round(pkgMeat*3);
+    var fee=+f.fee.value||0;
+    var cpl=fee>0?fee/meat:null;
+    $('r-meat').textContent=fmt(meat)+' lb';
+    $('r-range').textContent='boneless venison, likely '+fmt(lo)+'–'+fmt(hi)+' lb';
+    $('r-live').textContent=fmt(live)+' lb'+(t==='live'?'':' (est.)');
+    $('r-fd').textContent=fmt(fd)+' lb'+(t==='fd'?'':' (est.)');
+    $('r-carc').textContent=fmt(carcass)+' lb';
+    $('r-loss').textContent='− '+fmt(shotLoss)+' lb';
+    $('r-back').textContent=fmt(back,1)+' lb';
+    $('r-hind').textContent=hind?fmt(hind)+' lb':'ground';
+    $('r-front').textContent=front?fmt(front)+' lb':'ground';
+    $('r-ground').textContent=fmt(groundOut)+' lb'+(fat?' incl. fat':'');
+    $('r-freezer').textContent=fmt(freezer,1)+' cu ft';
+    $('r-pkgs').textContent=fmt(pkgs);
+    $('r-meals').textContent='~'+fmt(meals);
+    $('r-cost').textContent=cpl==null?'DIY':'$'+cpl.toFixed(2)+'/lb';
+    $('r-note').textContent=(style==='bonein'?'Bone-in cuts weigh about 22% more than boneless; the meat is the same. ':'')+'Yield assumes the deer was cooled within a few hours. Add 10% if you save every scrap of trim yourself.';
+    last='Deer yield: field-dressed '+fmt(fd)+' lb → carcass '+fmt(carcass)+' lb → about '+fmt(meat)+' lb boneless venison ('+fmt(lo)+'–'+fmt(hi)+'). Backstraps '+fmt(back,1)+', hind '+fmt(hind)+', front '+fmt(front)+', ground '+fmt(groundOut)+'. Freezer '+fmt(freezer,1)+' cu ft, ~'+pkgs+' lb packages'+(cpl!=null?', $'+cpl.toFixed(2)+'/lb processed':'')+'.';
+  }
+  f.wtype.addEventListener('change',function(){ var g=f.wtype.value==='girth'; $('wrap-girth').hidden=!g; $('wrap-weight').hidden=g; if(f.wtype.value==='live'&&+f.weight.value<140)f.weight.value=165; if(f.wtype.value==='fd'&&+f.weight.value>=160)f.weight.value=130; calc(); });
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); });
+  $('deerform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.wtype.value='fd';$('wrap-girth').hidden=true;$('wrap-weight').hidden=false;f.weight.value=130;f.girth.value=36;f.shot.value='0';f.style.value='std';f.fat.value=0;f.fee.value=110;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
