@@ -69,15 +69,27 @@ def footer(sources):
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
 </footer>'''
 
+
+AMZ_TAG='backfortytool-20'
+import urllib.parse as _up
+def affiliate(url):
+    """Route every gear link through Amazon with the Associates tag until other programs approve."""
+    if 'tractorsupply.com' in url:
+        q=_up.unquote(url.split('/search/')[-1])
+        url='https://www.amazon.com/s?k='+_up.quote_plus(q)
+    if 'amazon.com' in url and 'tag=' not in url:
+        url+=('&' if '?' in url else '?')+'tag='+AMZ_TAG
+    return url
+
 def gear(title, intro, items):
-    lis='\n'.join(f'<li><strong>{n}</strong><span>{d}</span><br><a href="{u}" rel="sponsored nofollow" target="_blank">{cta} →</a></li>' for n,d,u,cta in items)
+    lis='\n'.join(f'<li><strong>{n}</strong><span>{d}</span><br><a href="{affiliate(u)}" rel="sponsored nofollow" target="_blank">{cta} →</a></li>' for n,d,u,cta in items)
     return f'''<section class="gear" aria-label="Recommended gear">
   <h2>{title}</h2>
   <p>{intro}</p>
   <ul>
 {lis}
   </ul>
-  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+  <p class="disc">As an Amazon Associate, Back Forty Tools earns from qualifying purchases. Links above are affiliate links; buying through them costs you nothing extra and keeps the calculators free.</p>
 </section>'''
 
 if __name__=='__main__':
