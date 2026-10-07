@@ -31,6 +31,7 @@ def page(slug, title, h1_title, desc, body, faqs=None, app_name=None, extra_sche
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="Back Forty Tools">
+<meta name='impact-site-verification' value='7f219c73-b5ef-4933-9e98-e80d3054c940'>
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
