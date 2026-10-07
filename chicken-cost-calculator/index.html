@@ -29,15 +29,18 @@
   --accent-ink:#fff8e8;
   --tag:#2f5d3a;         /* feed-tag green */
   --tag-ink:#eef6ee;
+  --gearbg:#efe4cf;      /* feed-sack tan */
+  --buy:#c8731d;         /* saddle orange */
+  --buy-ink:#fff8e8;
   --display:"Bitter",Georgia,"Times New Roman",serif;
   --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -79,16 +82,19 @@ fieldset{border:0;padding:0;margin:0;display:contents}
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .copied{font-size:.85rem;color:var(--tag);font-weight:700}
 
-.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
-.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
-.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
-.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.gear li{border:1px solid var(--line);padding:12px;min-width:0}
-.gear li strong{display:block;font-family:var(--display);font-size:1rem}
-.gear li span{font-size:.9rem;color:var(--muted)}
-.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
-.gear a:hover{text-decoration:underline}
-.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+.gear{margin-top:36px;background:var(--gearbg);border-top:4px solid var(--accent);padding:24px 22px 18px}
+.gear .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:700;color:var(--accent)}
+.gear h2{font-family:var(--display);font-size:1.35rem;margin:.2rem 0 6px}
+.gear>p{margin:0 0 18px;color:var(--muted);font-size:1rem;max-width:62ch}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.gear li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(42,36,28,.06)}
+.gear .ico{width:56px;height:56px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center}
+.gear .ico svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gear li strong{display:block;font-family:var(--display);font-size:1.05rem;line-height:1.25}
+.gear li span{font-size:.92rem;color:var(--muted);flex:1}
+.gear a.buy{display:block;text-align:center;background:var(--buy);color:var(--buy-ink);font-weight:700;text-decoration:none;padding:10px 12px;border-radius:5px;font-size:.95rem}
+.gear a.buy:hover,.gear a.buy:focus-visible{filter:brightness(1.08);outline:none}
+.disc{font-size:.8rem;color:var(--muted);margin:14px 0 0}
 
 article{max-width:68ch;margin-top:40px}
 article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
@@ -174,13 +180,14 @@ footer a{color:var(--accent)}
   </aside>
 </section>
 <section class="gear" aria-label="Recommended gear">
+  <div class="eyebrow">Recommended gear</div>
   <h2>Where the money leaks out of a small flock</h2>
   <p>Most of the gap between a $2.50 dozen and a $4 dozen is feed on the ground and water that froze.</p>
   <ul>
-<li><strong>Treadle or no-waste feeder</strong><span>Stops the 20% that gets raked onto the ground and feeds the rats. Biggest single saving on this page.</span><br><a href="https://www.amazon.com/s?k=treadle+chicken+feeder&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop feeders →</a></li>
-<li><strong>Automatic coop door</strong><span>Opens at dawn, closes at dusk. Lets you leave for a weekend without a chicken sitter.</span><br><a href="https://www.amazon.com/s?k=automatic+chicken+coop+door&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop coop doors →</a></li>
-<li><strong>Heated waterer base</strong><span>One frozen waterer in January costs more eggs than the base does.</span><br><a href="https://www.amazon.com/s?k=heated+poultry+waterer&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop heated waterers →</a></li>
-<li><strong>Egg cartons, flats and date stamps</strong><span>If you'll sell a few dozen, clean cartons are the difference between $3 and $5 a dozen.</span><br><a href="https://www.amazon.com/s?k=egg+cartons+bulk&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop egg cartons →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 10h24l-3 14H7z"/><path d="M10 10V6h12v4"/><path d="M8 17h16"/></svg></div><strong>Treadle or no-waste feeder</strong><span>Stops the 20% that gets raked onto the ground and feeds the rats. Biggest single saving on this page.</span><a class="buy" href="https://www.amazon.com/s?k=treadle+chicken+feeder&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 4h16v24H8z"/><path d="M8 12h16"/><path d="M20 20h2"/></svg></div><strong>Automatic coop door</strong><span>Opens at dawn, closes at dusk. Lets you leave for a weekend without a chicken sitter.</span><a class="buy" href="https://www.amazon.com/s?k=automatic+chicken+coop+door&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4s-8 9-8 15a8 8 0 0016 0c0-6-8-15-8-15z"/></svg></div><strong>Heated waterer base</strong><span>One frozen waterer in January costs more eggs than the base does.</span><a class="buy" href="https://www.amazon.com/s?k=heated+poultry+waterer&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 12h24v12H4z"/><path d="M4 12l4-5h16l4 5"/><circle cx="10" cy="18" r="2"/><circle cx="16" cy="18" r="2"/><circle cx="22" cy="18" r="2"/></svg></div><strong>Egg cartons, flats and date stamps</strong><span>If you'll sell a few dozen, clean cartons are the difference between $3 and $5 a dozen.</span><a class="buy" href="https://www.amazon.com/s?k=egg+cartons+bulk&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
   </ul>
   <p class="disc">As an Amazon Associate, Back Forty Tools earns from qualifying purchases. Links above are affiliate links; buying through them costs you nothing extra and keeps the calculators free.</p>
 </section>

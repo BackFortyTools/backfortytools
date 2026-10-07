@@ -29,15 +29,18 @@
   --accent-ink:#fff8e8;
   --tag:#2f5d3a;         /* feed-tag green */
   --tag-ink:#eef6ee;
+  --gearbg:#efe4cf;      /* feed-sack tan */
+  --buy:#c8731d;         /* saddle orange */
+  --buy-ink:#fff8e8;
   --display:"Bitter",Georgia,"Times New Roman",serif;
   --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -79,16 +82,19 @@ fieldset{border:0;padding:0;margin:0;display:contents}
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .copied{font-size:.85rem;color:var(--tag);font-weight:700}
 
-.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
-.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
-.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
-.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.gear li{border:1px solid var(--line);padding:12px;min-width:0}
-.gear li strong{display:block;font-family:var(--display);font-size:1rem}
-.gear li span{font-size:.9rem;color:var(--muted)}
-.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
-.gear a:hover{text-decoration:underline}
-.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+.gear{margin-top:36px;background:var(--gearbg);border-top:4px solid var(--accent);padding:24px 22px 18px}
+.gear .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:700;color:var(--accent)}
+.gear h2{font-family:var(--display);font-size:1.35rem;margin:.2rem 0 6px}
+.gear>p{margin:0 0 18px;color:var(--muted);font-size:1rem;max-width:62ch}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.gear li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(42,36,28,.06)}
+.gear .ico{width:56px;height:56px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center}
+.gear .ico svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gear li strong{display:block;font-family:var(--display);font-size:1.05rem;line-height:1.25}
+.gear li span{font-size:.92rem;color:var(--muted);flex:1}
+.gear a.buy{display:block;text-align:center;background:var(--buy);color:var(--buy-ink);font-weight:700;text-decoration:none;padding:10px 12px;border-radius:5px;font-size:.95rem}
+.gear a.buy:hover,.gear a.buy:focus-visible{filter:brightness(1.08);outline:none}
+.disc{font-size:.8rem;color:var(--muted);margin:14px 0 0}
 
 article{max-width:68ch;margin-top:40px}
 article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
@@ -181,13 +187,14 @@ footer a{color:var(--accent)}
   </aside>
 </section>
 <section class="gear" aria-label="Recommended gear">
+  <div class="eyebrow">Recommended gear</div>
   <h2>Carry more on the same acres</h2>
   <p>Rotation is the lever. Everything here is about making rotation cheap enough to actually do.</p>
   <ul>
-<li><strong>Polywire reel and step-in posts</strong><span>The cheapest way to split one field into four. A reel, 50 posts and a charger set up a rotation in an afternoon.</span><br><a href="https://www.amazon.com/s?k=polywire+reel&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop polywire →</a></li>
-<li><strong>Solar fence charger</strong><span>Lets you rotate paddocks far from the barn with no extension cord.</span><br><a href="https://www.amazon.com/s?k=solar+fence+charger&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop chargers →</a></li>
-<li><strong>Pasture seed mix</strong><span>Overseeding clover into fescue adds nitrogen and summer grazing without buying fertilizer.</span><br><a href="https://www.amazon.com/s?k=pasture+seed&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop seed →</a></li>
-<li><strong>Grazing stick</strong><span>A $10 ruler that tells you when a paddock is ready and when to pull the cattle off.</span><br><a href="https://www.amazon.com/s?k=pasture+grazing+stick&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop grazing sticks →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="3"/><path d="M25 16h3M4 16h3"/></svg></div><strong>Polywire reel and step-in posts</strong><span>The cheapest way to split one field into four. A reel, 50 posts and a charger set up a rotation in an afternoon.</span><a class="buy" href="https://www.amazon.com/s?k=polywire+reel&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 8h16v16H8z"/><path d="M17 11l-4 6h6l-4 6"/></svg></div><strong>Solar fence charger</strong><span>Lets you rotate paddocks far from the barn with no extension cord.</span><a class="buy" href="https://www.amazon.com/s?k=solar+fence+charger&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 28V14"/><path d="M16 14c-6 0-9-4-9-9 5 0 9 3 9 9z"/><path d="M16 18c6 0 9-4 9-9-5 0-9 3-9 9z"/></svg></div><strong>Pasture seed mix</strong><span>Overseeding clover into fescue adds nitrogen and summer grazing without buying fertilizer.</span><a class="buy" href="https://www.amazon.com/s?k=pasture+seed&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4v24"/><path d="M12 8h4M12 12h4M12 16h4M12 20h4M12 24h4"/></svg></div><strong>Grazing stick</strong><span>A $10 ruler that tells you when a paddock is ready and when to pull the cattle off.</span><a class="buy" href="https://www.amazon.com/s?k=pasture+grazing+stick&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
   </ul>
   <p class="disc">As an Amazon Associate, Back Forty Tools earns from qualifying purchases. Links above are affiliate links; buying through them costs you nothing extra and keeps the calculators free.</p>
 </section>

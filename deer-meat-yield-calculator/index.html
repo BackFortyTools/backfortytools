@@ -29,15 +29,18 @@
   --accent-ink:#fff8e8;
   --tag:#2f5d3a;         /* feed-tag green */
   --tag-ink:#eef6ee;
+  --gearbg:#efe4cf;      /* feed-sack tan */
+  --buy:#c8731d;         /* saddle orange */
+  --buy-ink:#fff8e8;
   --display:"Bitter",Georgia,"Times New Roman",serif;
   --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
-  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;--gearbg:#2d2619;--buy:#e08a35;--buy-ink:#1c1915;color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -79,16 +82,19 @@ fieldset{border:0;padding:0;margin:0;display:contents}
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .copied{font-size:.85rem;color:var(--tag);font-weight:700}
 
-.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
-.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
-.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
-.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.gear li{border:1px solid var(--line);padding:12px;min-width:0}
-.gear li strong{display:block;font-family:var(--display);font-size:1rem}
-.gear li span{font-size:.9rem;color:var(--muted)}
-.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
-.gear a:hover{text-decoration:underline}
-.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+.gear{margin-top:36px;background:var(--gearbg);border-top:4px solid var(--accent);padding:24px 22px 18px}
+.gear .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:700;color:var(--accent)}
+.gear h2{font-family:var(--display);font-size:1.35rem;margin:.2rem 0 6px}
+.gear>p{margin:0 0 18px;color:var(--muted);font-size:1rem;max-width:62ch}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.gear li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(42,36,28,.06)}
+.gear .ico{width:56px;height:56px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center}
+.gear .ico svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gear li strong{display:block;font-family:var(--display);font-size:1.05rem;line-height:1.25}
+.gear li span{font-size:.92rem;color:var(--muted);flex:1}
+.gear a.buy{display:block;text-align:center;background:var(--buy);color:var(--buy-ink);font-weight:700;text-decoration:none;padding:10px 12px;border-radius:5px;font-size:.95rem}
+.gear a.buy:hover,.gear a.buy:focus-visible{filter:brightness(1.08);outline:none}
+.disc{font-size:.8rem;color:var(--muted);margin:14px 0 0}
 
 article{max-width:68ch;margin-top:40px}
 article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
@@ -186,13 +192,14 @@ footer a{color:var(--accent)}
   </aside>
 </section>
 <section class="gear" aria-label="Recommended gear">
+  <div class="eyebrow">Recommended gear</div>
   <h2>Gear that gets more of that meat into the freezer</h2>
   <p>The yield above assumes the deer was cooled fast and cut clean. These are the four things that make that happen.</p>
   <ul>
-<li><strong>Electric meat grinder, ½ HP or larger</strong><span>The single purchase that turns one deer into a full freezer of burger, sausage and jerky. Pays for itself the second season.</span><br><a href="https://www.amazon.com/s?k=meat+grinder+electric+1%2F2+hp&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop grinders →</a></li>
-<li><strong>Vacuum sealer + bags</strong><span>Doubles freezer life and stops the freezer burn that ruins the last ten pounds every spring.</span><br><a href="https://www.amazon.com/s?k=vacuum+sealer+for+game+meat&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop vacuum sealers →</a></li>
-<li><strong>Gambrel and hoist</strong><span>Hang the deer at working height and skinning takes ten minutes instead of forty.</span><br><a href="https://www.amazon.com/s?k=deer+hoist+gambrel&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop hoists →</a></li>
-<li><strong>Breathable game bags</strong><span>Keep flies and dirt off the carcass while it cools. Cheap insurance for the meat you just calculated.</span><br><a href="https://www.amazon.com/s?k=deer+game+bags&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">Shop game bags →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 12h14v10H6z"/><path d="M20 15h6l2 3-2 3h-6"/><path d="M9 12V7h8v5"/><circle cx="10" cy="17" r="1.5"/></svg></div><strong>Electric meat grinder, ½ HP or larger</strong><span>The single purchase that turns one deer into a full freezer of burger, sausage and jerky. Pays for itself the second season.</span><a class="buy" href="https://www.amazon.com/s?k=meat+grinder+electric+1%2F2+hp&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 14h24v8H4z"/><path d="M4 18h24"/><path d="M8 14v-4h16v4"/></svg></div><strong>Vacuum sealer + bags</strong><span>Doubles freezer life and stops the freezer burn that ruins the last ten pounds every spring.</span><a class="buy" href="https://www.amazon.com/s?k=vacuum+sealer+for+game+meat&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4v6"/><path d="M8 10h16"/><path d="M8 10v4M24 10v4"/><path d="M6 14h4M22 14h4"/><path d="M16 10v18"/><path d="M12 28h8"/></svg></div><strong>Gambrel and hoist</strong><span>Hang the deer at working height and skinning takes ten minutes instead of forty.</span><a class="buy" href="https://www.amazon.com/s?k=deer+hoist+gambrel&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
+<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 10h14l2 18H7z"/><path d="M12 10V7a4 4 0 018 0v3"/></svg></div><strong>Breathable game bags</strong><span>Keep flies and dirt off the carcass while it cools. Cheap insurance for the meat you just calculated.</span><a class="buy" href="https://www.amazon.com/s?k=deer+game+bags&tag=backfortytool-20" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>
   </ul>
   <p class="disc">As an Amazon Associate, Back Forty Tools earns from qualifying purchases. Links above are affiliate links; buying through them costs you nothing extra and keeps the calculators free.</p>
 </section>

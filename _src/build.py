@@ -81,9 +81,54 @@ def affiliate(url):
         url+=('&' if '?' in url else '?')+'tag='+AMZ_TAG
     return url
 
+ICONS={
+ 'feeder':'<path d="M4 10h24l-3 14H7z"/><path d="M10 10V6h12v4"/><path d="M8 17h16"/>',
+ 'tarp':'<path d="M4 22l6-12h12l6 12z"/><path d="M4 22h24"/><path d="M10 10l6 12 6-12"/>',
+ 'tape':'<path d="M6 12h20v8H6z"/><path d="M10 12v3M14 12v5M18 12v3M22 12v5"/>',
+ 'ring':'<ellipse cx="16" cy="12" rx="11" ry="4"/><path d="M5 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M5 16c0 2.2 4.9 4 11 4s11-1.8 11-4"/>',
+ 'grinder':'<path d="M6 12h14v10H6z"/><path d="M20 15h6l2 3-2 3h-6"/><path d="M9 12V7h8v5"/><circle cx="10" cy="17" r="1.5"/>',
+ 'sealer':'<path d="M4 14h24v8H4z"/><path d="M4 18h24"/><path d="M8 14v-4h16v4"/>',
+ 'hoist':'<path d="M16 4v6"/><path d="M8 10h16"/><path d="M8 10v4M24 10v4"/><path d="M6 14h4M22 14h4"/><path d="M16 10v18"/><path d="M12 28h8"/>',
+ 'bag':'<path d="M9 10h14l2 18H7z"/><path d="M12 10V7a4 4 0 018 0v3"/>',
+ 'door':'<path d="M8 4h16v24H8z"/><path d="M8 12h16"/><path d="M20 20h2"/>',
+ 'water':'<path d="M16 4s-8 9-8 15a8 8 0 0016 0c0-6-8-15-8-15z"/>',
+ 'carton':'<path d="M4 12h24v12H4z"/><path d="M4 12l4-5h16l4 5"/><circle cx="10" cy="18" r="2"/><circle cx="16" cy="18" r="2"/><circle cx="22" cy="18" r="2"/>',
+ 'thermo':'<path d="M13 5a3 3 0 016 0v13a5 5 0 11-6 0z"/><path d="M16 11v9"/>',
+ 'paper':'<path d="M6 8h20v16H6z"/><path d="M6 12h20M10 8v16"/>',
+ 'cooler':'<path d="M5 12h22v14H5z"/><path d="M5 17h22"/><path d="M9 12V9h14v3"/><path d="M14 20h4"/>',
+ 'meter':'<path d="M10 4h12v16H10z"/><path d="M14 20v8M18 20v8"/><path d="M13 9h6M13 13h6"/>',
+ 'rack':'<path d="M4 26h24"/><path d="M6 26V10M26 26V10"/><circle cx="11" cy="21" r="3"/><circle cx="17" cy="21" r="3"/><circle cx="22" cy="21" r="3"/><circle cx="14" cy="15" r="3"/><circle cx="20" cy="15" r="3"/>',
+ 'splitter':'<path d="M16 4l6 10H10z"/><path d="M16 14v10"/><path d="M8 24h16v4H8z"/>',
+ 'wire':'<circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="3"/><path d="M25 16h3M4 16h3"/>',
+ 'charger':'<path d="M8 8h16v16H8z"/><path d="M17 11l-4 6h6l-4 6"/>',
+ 'seed':'<path d="M16 28V14"/><path d="M16 14c-6 0-9-4-9-9 5 0 9 3 9 9z"/><path d="M16 18c6 0 9-4 9-9-5 0-9 3-9 9z"/>',
+ 'stick':'<path d="M16 4v24"/><path d="M12 8h4M12 12h4M12 16h4M12 20h4M12 24h4"/>',
+ 'driver':'<path d="M11 4h10v10H11z"/><path d="M14 14v12M18 14v12"/><path d="M16 4V2"/>',
+ 'stretcher':'<path d="M4 16h8M20 16h8"/><path d="M12 10h8v12h-8z"/><path d="M16 10V6M16 22v4"/>',
+ 'pliers':'<path d="M10 4l6 10 6-10"/><path d="M16 14v2"/><path d="M12 16l-4 12M20 16l4 12"/><path d="M14 16h4"/>',
+ 'compactor':'<path d="M6 22h20v4H6z"/><path d="M10 22V12h12v10"/><path d="M16 12V6h6"/>',
+ 'rake':'<path d="M16 4v16"/><path d="M6 20h20"/><path d="M8 20v6M12 20v6M16 20v6M20 20v6M24 20v6"/>',
+ 'fabric':'<path d="M4 10h24v12H4z"/><path d="M4 14l6 4 6-4 6 4 6-4"/>',
+ 'float':'<path d="M4 18h24v4H4z"/><path d="M16 18V8"/><path d="M12 8h8"/>',
+ 'freezer':'<path d="M6 8h20v18H6z"/><path d="M6 14h20"/><path d="M11 18v4"/>',
+ 'board':'<path d="M6 6h20v20H6z"/><path d="M9 12h14M9 16h10M9 20h12"/>',
+ 'alarm':'<path d="M16 6a8 8 0 018 8v6l2 3H6l2-3v-6a8 8 0 018-8z"/><path d="M13 26a3 3 0 006 0"/>',
+ 'cloth':'<path d="M5 5h22v22H5z"/><path d="M12 5v22M20 5v22M5 12h22M5 20h22"/>',
+ 'nest':'<path d="M6 12h20v14H6z"/><path d="M6 12l10-6 10 6"/><ellipse cx="16" cy="20" rx="4" ry="3"/>',
+ 'shavings':'<path d="M6 20c3-6 6-6 9 0s6 6 9 0"/><path d="M6 14c3-6 6-6 9 0s6 6 9 0"/><path d="M6 26c3-6 6-6 9 0s6 6 9 0"/>',
+ 'tool':'<path d="M20 4l8 8-10 10-8-8z"/><path d="M10 14L4 20l8 8 6-6"/>',
+}
+ICON_KEYS=[('hay net','feeder'),('feeder','feeder'),('tarp','tarp'),('weight tape','tape'),('ring','ring'),('grinder','grinder'),('sealer','sealer'),('hoist','hoist'),('game bag','bag'),('coop door','door'),('waterer','water'),('carton','carton'),('thermometer','thermo'),('instant-read','thermo'),('butcher paper','paper'),('cooler','cooler'),('moisture meter','meter'),('firewood rack','rack'),('kindling','splitter'),('stove thermometer','thermo'),('polywire','wire'),('charger','charger'),('seed','seed'),('grazing stick','stick'),('post driver','driver'),('stretcher','stretcher'),('strainer','wire'),('pliers','pliers'),('compactor','compactor'),('rake','rake'),('fabric','fabric'),('float','float'),('freezer','freezer'),('whiteboard','board'),('alarm','alarm'),('hardware cloth','cloth'),('nest box','nest'),('shavings','shavings')]
+def icon_for(name):
+    n=name.lower()
+    for k,v in ICON_KEYS:
+        if k in n: return ICONS[v]
+    return ICONS['tool']
+
 def gear(title, intro, items):
-    lis='\n'.join(f'<li><strong>{n}</strong><span>{d}</span><br><a href="{affiliate(u)}" rel="sponsored nofollow" target="_blank">{cta} →</a></li>' for n,d,u,cta in items)
+    lis='\n'.join(f'<li><div class="ico" aria-hidden="true"><svg viewBox="0 0 32 32">{icon_for(n)}</svg></div><strong>{n}</strong><span>{d}</span><a class="buy" href="{affiliate(u)}" rel="sponsored nofollow" target="_blank">See it on Amazon →</a></li>' for n,d,u,cta in items)
     return f'''<section class="gear" aria-label="Recommended gear">
+  <div class="eyebrow">Recommended gear</div>
   <h2>{title}</h2>
   <p>{intro}</p>
   <ul>
