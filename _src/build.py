@@ -8,6 +8,7 @@ CSS=open(os.path.join(SRC,'site.css')).read()
 FAVICON="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
 FONTS='https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap'
 TODAY=datetime.date.today().isoformat()
+IMPACT_TAG='<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})(\'https://utt.impactcdn.com/P-A7917150-9175-4770-95e5-6a4ddcaab8cf1.js\',\'script\',\'impactStat\',document,window);impactStat(\'trackImpression\');</script>'
 
 def page(slug, title, h1_title, desc, body, faqs=None, app_name=None, extra_schema=None):
     url=f'{SITE}/{slug}/' if slug else SITE+'/'
@@ -43,6 +44,7 @@ def page(slug, title, h1_title, desc, body, faqs=None, app_name=None, extra_sche
 </head>
 <body>
 {body}
+{IMPACT_TAG}
 </body>
 </html>
 '''
