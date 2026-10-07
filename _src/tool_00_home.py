@@ -16,14 +16,21 @@ EXTRA_CSS = r'''<style>
 TOOLS=[
  ("Livestock",[
    ("Hay & forage","Winter Hay Calculator","Pounds, tons, bales and cost for horses, cattle, goats and sheep, with feeder and storage waste built in.","/winter-hay-calculator/"),
-   ("Poultry","Backyard Chicken Cost Calculator","What a flock really costs per month and per dozen eggs, and when the coop pays for itself.","/chicken-cost-calculator/"),
+   ("Pasture","Pasture Stocking Rate Calculator","How many cows, horses, goats or sheep your acres can carry, and the hay gap when they can't.","/pasture-stocking-rate-calculator/"),
+   ("Fencing","Farm Fence Calculator","Posts, wire, brace rails, gates and a materials cost from length or acres.","/fence-calculator/"),
  ]),
- ("Hunting & processing",[
+ ("Poultry",[
+   ("Costs","Backyard Chicken Cost Calculator","What a flock really costs per month and per dozen eggs, and when the coop pays for itself.","/chicken-cost-calculator/"),
+   ("Housing","Chicken Coop Size Calculator","Coop floor, run, roost length, nest boxes and ventilation for your flock.","/chicken-coop-size-calculator/"),
+ ]),
+ ("Hunting & butchering",[
    ("Deer","Deer Meat Yield Calculator","Live or field-dressed weight in, pounds of boneless venison and freezer space out, cut by cut.","/deer-meat-yield-calculator/"),
- ]),
- ("Home & heat",[
-   ("Wood heat","Firewood Calculator","Cords for the season by house size, climate, stove and species. Stack-to-cord converter included.","/firewood-calculator/"),
+   ("Beef","Half a Cow Calculator","Hanging weight to take-home pounds for a whole, half or quarter beef, with the real cost per pound.","/beef-yield-calculator/"),
    ("Smoking","Brisket Smoking Time Calculator","Tell it when you want to eat; it tells you when to light the smoker, wrap, pull and rest.","/brisket-smoking-time-calculator/"),
+ ]),
+ ("Home, heat & projects",[
+   ("Wood heat","Firewood Calculator","Cords for the season by house size, climate, stove and species. Stack-to-cord converter included.","/firewood-calculator/"),
+   ("Grading","Gravel, Dirt & Concrete Calculator","Yards, tons, bags and truckloads for driveways, pads, beds and slabs, with compaction built in.","/gravel-dirt-concrete-calculator/"),
  ]),
 ]
 

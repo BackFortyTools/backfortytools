@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pasture Stocking Rate Calculator: How Many Cows Per Acre? | Back Forty Tools</title>
+<meta name="description" content="Free pasture stocking rate calculator. Enter acres, pasture quality, grazing days and animal type to get how many cattle, horses, goats or sheep your land can carry, acres per head, and the hay gap.">
+<link rel="canonical" href="https://backfortytools.com/pasture-stocking-rate-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pasture Stocking Rate Calculator">
+<meta property="og:description" content="Free pasture stocking rate calculator. Enter acres, pasture quality, grazing days and animal type to get how many cattle, horses, goats or sheep your land can carry, acres per head, and the hay gap.">
+<meta property="og:url" content="https://backfortytools.com/pasture-stocking-rate-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Pasture Stocking Rate Calculator", "url": "https://backfortytools.com/pasture-stocking-rate-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free pasture stocking rate calculator. Enter acres, pasture quality, grazing days and animal type to get how many cattle, horses, goats or sheep your land can carry, acres per head, and the hay gap.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many cows can I have on 10 acres?", "acceptedAnswer": {"@type": "Answer", "text": "On average Southeastern pasture with simple rotation, about four cow-calf pairs. Poor, continuously grazed pasture carries two; well-managed, fertilized pasture with rotation can carry six or seven."}}, {"@type": "Question", "name": "How many acres per cow in Georgia?", "acceptedAnswer": {"@type": "Answer", "text": "Two to three acres per cow-calf pair on decent fescue or bermuda pasture. Count only grazeable acres, not woods or the barn lot."}}, {"@type": "Question", "name": "How many goats per acre?", "acceptedAnswer": {"@type": "Answer", "text": "Six to eight does with kids per acre on good pasture, two to four on brushy or thin ground. Goats browse rather than graze, so wooded acres count for more with goats than with cattle."}}, {"@type": "Question", "name": "How many horses per acre?", "acceptedAnswer": {"@type": "Answer", "text": "Plan on 2 acres for the first horse and 1 to 2 more for each additional horse. Horses graze closer than cattle and damage pasture faster, so rotation matters even more."}}, {"@type": "Question", "name": "What is an animal unit?", "acceptedAnswer": {"@type": "Answer", "text": "A 1,000-pound cow with or without a calf under six months, eating about 26 pounds of dry forage a day. Every other animal is expressed as a fraction or multiple of that."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Livestock</div>
+  <h1>How many cows (or goats, or horses) can your land carry?</h1>
+  <p class="lede">Acres, pasture quality and grazing style in; head count, acres per animal and the hay gap out. Uses the animal-unit method extension agents teach.</p>
+</header>
+<section class="calc" aria-label="Pasture stocking rate calculator">
+  <form class="panel" id="psform" autocomplete="off">
+    <h2>Your pasture</h2>
+    <div class="grid">
+      <label>Grazeable acres <small>not counting woods, ponds, barn lot</small>
+        <input id="acres" type="number" min="0.1" step="0.5" value="10" inputmode="decimal">
+      </label>
+      <label>Pasture productivity
+        <select id="yield">
+          <option value="2.0">Poor — weedy, thin, unfertilized (2 tons/acre/yr)</option>
+          <option value="3.5" selected>Average fescue or bermuda, some fertilizer (3.5 tons)</option>
+          <option value="5.0">Good — fertilized, limed, rotated (5 tons)</option>
+          <option value="7.0">Excellent — irrigated or intensively managed (7 tons)</option>
+        </select>
+      </label>
+      <label>Grazing days per year <small>Southeast: 240–300</small>
+        <input id="days" type="number" min="30" max="365" step="10" value="270" inputmode="numeric">
+      </label>
+      <label>Grazing style <small>sets how much of the grass they actually eat</small>
+        <select id="util">
+          <option value="0.35">Continuous — one big field (35% used)</option>
+          <option value="0.50" selected>Simple rotation, 3–6 paddocks (50%)</option>
+          <option value="0.65">Intensive rotation, daily moves (65%)</option>
+        </select>
+      </label>
+      <label>Animal
+        <select id="animal">
+          <option value="1.0" data-wt="1000">Beef cow, dry (1,000 lb)</option>
+          <option value="1.3" data-wt="1200" selected>Beef cow + calf (1,200 lb pair)</option>
+          <option value="0.7" data-wt="700">Yearling / stocker (700 lb)</option>
+          <option value="1.25" data-wt="1100">Horse (1,100 lb)</option>
+          <option value="0.2" data-wt="150">Sheep / goat (150 lb)</option>
+          <option value="0.1" data-wt="80">Meat goat kid / lamb (80 lb)</option>
+        </select>
+      </label>
+      <label>Head you have or want
+        <input id="head" type="number" min="0" step="1" value="4" inputmode="numeric">
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Your pasture can carry</div>
+      <div class="big" id="r-head">—</div>
+      <div class="sub" id="r-au">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Forage grown per year</dt><dd id="r-grown">—</dd>
+      <dt>Forage actually eaten</dt><dd id="r-eaten">—</dd>
+      <dt>Each animal needs per year</dt><dd id="r-need">—</dd>
+      <dt class="total">Acres per head</dt><dd class="total" id="r-acres">—</dd>
+      <dt>Your current plan</dt><dd id="r-plan">—</dd>
+      <dt class="total">Verdict</dt><dd class="total" id="r-verdict">—</dd>
+      <dt>Hay to cover the gap</dt><dd id="r-hay">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Carry more on the same acres</h2>
+  <p>Rotation is the lever. Everything here is about making rotation cheap enough to actually do.</p>
+  <ul>
+<li><strong>Polywire reel and step-in posts</strong><span>The cheapest way to split one field into four. A reel, 50 posts and a charger set up a rotation in an afternoon.</span><br><a href="https://www.tractorsupply.com/tsc/search/polywire%20reel" rel="sponsored nofollow" target="_blank">Shop polywire →</a></li>
+<li><strong>Solar fence charger</strong><span>Lets you rotate paddocks far from the barn with no extension cord.</span><br><a href="https://www.tractorsupply.com/tsc/search/solar%20fence%20charger" rel="sponsored nofollow" target="_blank">Shop chargers →</a></li>
+<li><strong>Pasture seed mix</strong><span>Overseeding clover into fescue adds nitrogen and summer grazing without buying fertilizer.</span><br><a href="https://www.tractorsupply.com/tsc/search/pasture%20seed" rel="sponsored nofollow" target="_blank">Shop seed →</a></li>
+<li><strong>Grazing stick</strong><span>A $10 ruler that tells you when a paddock is ready and when to pull the cattle off.</span><br><a href="https://www.amazon.com/s?k=pasture+grazing+stick" rel="sponsored nofollow" target="_blank">Shop grazing sticks →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>Stocking rate is forage supply divided by forage demand. Extension agents measure both in "animal units," where one AU is a 1,000-pound cow eating about 26 pounds of dry forage a day.</p>
+  <div class="formula">acres × tons grown × utilization = forage available &nbsp;·&nbsp; head × AU × 26 lb × grazing days = forage needed</div>
+  <p>Ten average acres in north Georgia grow about 35 tons of dry matter a year. With a simple rotation the cattle eat half of it, 17.5 tons. A cow-calf pair needs about 4.5 tons over a 270-day grazing season, so those ten acres carry about four pairs, or 2.5 acres per pair. That is close to the "2 to 3 acres per cow" rule most Georgia cattlemen use, and it is why the same ten acres in a drought year leaves you buying hay in August.</p>
+
+  <h2>Acres per cow by region</h2>
+  <p>Rough carrying capacity for a 1,200-pound cow-calf pair on unirrigated, moderately managed pasture.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Region</th><th>Acres per pair</th><th>Grazing season</th></tr></thead>
+    <tbody>
+      <tr><td>Southeast (GA, AL, TN, Carolinas)</td><td>2–3</td><td>240–300 days</td></tr>
+      <tr><td>Mid-South, lower Midwest (KY, MO, AR)</td><td>2–4</td><td>210–240 days</td></tr>
+      <tr><td>Upper Midwest, Northeast</td><td>2–3 (short season)</td><td>150–180 days</td></tr>
+      <tr><td>Great Plains (KS, NE, OK)</td><td>5–10</td><td>180–240 days</td></tr>
+      <tr><td>Mountain West, Southwest range</td><td>20–60+</td><td>varies</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Animal unit equivalents</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Animal</th><th>Animal units</th><th>Dry forage per day</th></tr></thead>
+    <tbody>
+      <tr><td>Dry cow, 1,000 lb</td><td>1.0</td><td>26 lb</td></tr>
+      <tr><td>Cow with calf, 1,200 lb</td><td>1.3</td><td>34 lb</td></tr>
+      <tr><td>Yearling, 700 lb</td><td>0.7</td><td>18 lb</td></tr>
+      <tr><td>Bull, 1,800 lb</td><td>1.5</td><td>39 lb</td></tr>
+      <tr><td>Horse, 1,100 lb</td><td>1.25</td><td>32 lb</td></tr>
+      <tr><td>Ewe or doe with offspring</td><td>0.2</td><td>5 lb</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Why rotation doubles your pasture</h2>
+  <p>In a single big field, cattle eat the best grass to the dirt and leave the rest to go to seed. Half the forage is wasted by trampling, manure and selective grazing. Split that field into four and move them every week and utilization climbs from 35 to 50 percent. Move them daily and it reaches 65. A reel of polywire and a solar charger costs less than one round bale per month of winter feeding, and it buys you the equivalent of several more acres.</p>
+
+  <h2>The gap is normal; plan for it</h2>
+  <p>No pasture grows evenly. Fescue surges in April and goes dormant in July; bermuda is the reverse. The calculator's hay line shows how much you'll feed to cover the days the grass can't. If that number is bigger than you expected, that is the honest cost of the herd size you entered, and it is better to know in spring than in February.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How many cows can I have on 10 acres?</summary><p>On average Southeastern pasture with simple rotation, about four cow-calf pairs. Poor, continuously grazed pasture carries two; well-managed, fertilized pasture with rotation can carry six or seven.</p></details>
+<details><summary>How many acres per cow in Georgia?</summary><p>Two to three acres per cow-calf pair on decent fescue or bermuda pasture. Count only grazeable acres, not woods or the barn lot.</p></details>
+<details><summary>How many goats per acre?</summary><p>Six to eight does with kids per acre on good pasture, two to four on brushy or thin ground. Goats browse rather than graze, so wooded acres count for more with goats than with cattle.</p></details>
+<details><summary>How many horses per acre?</summary><p>Plan on 2 acres for the first horse and 1 to 2 more for each additional horse. Horses graze closer than cattle and damage pasture faster, so rotation matters even more.</p></details>
+<details><summary>What is an animal unit?</summary><p>A 1,000-pound cow with or without a calf under six months, eating about 26 pounds of dry forage a day. Every other animal is expressed as a fraction or multiple of that.</p></details>
+</article>
+<footer>
+  Animal-unit values and forage yields from UGA Extension, Mississippi State Extension and the USDA NRCS grazing guides. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={acres:$('acres'),yield:$('yield'),days:$('days'),util:$('util'),animal:$('animal'),head:$('head')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var last='';
+  function calc(){
+    var acres=+f.acres.value||0, y=+f.yield.value, days=+f.days.value||0, util=+f.util.value, au=+f.animal.value, head=+f.head.value||0;
+    var grown=acres*y;                 // tons DM/yr
+    var eaten=grown*util;              // tons usable
+    var needPer=au*26*days/2000;       // tons per head over grazing season
+    var canCarry=needPer>0?eaten/needPer:0;
+    var acresPer=canCarry>0?acres/canCarry:0;
+    var planNeed=head*needPer;
+    var gap=Math.max(0,planNeed-eaten); // tons
+    var hayTons=gap*1.15;              // hay is ~87% DM
+    var name=f.animal.options[f.animal.selectedIndex].text.split(' (')[0];
+    $('r-head').textContent=fmt(canCarry,1)+' head';
+    $('r-au').textContent=name.toLowerCase()+' · '+fmt(canCarry*au,1)+' animal units';
+    $('r-grown').textContent=fmt(grown,1)+' tons dry matter';
+    $('r-eaten').textContent=fmt(eaten,1)+' tons';
+    $('r-need').textContent=fmt(needPer,2)+' tons';
+    $('r-acres').textContent=fmt(acresPer,1)+' acres';
+    $('r-plan').textContent=head+' head need '+fmt(planNeed,1)+' tons';
+    var v= head===0?'—': head<=canCarry*0.85?'Understocked, room for '+Math.floor(canCarry-head)+' more': head<=canCarry*1.1?'About right':'Overstocked by '+fmt(head-canCarry,1)+' head';
+    $('r-verdict').textContent=v;
+    $('r-hay').textContent=gap>0?fmt(hayTons,1)+' tons ('+fmt(hayTons*2000/50)+' square bales)':'none, grass covers it';
+    $('r-note').textContent='Beyond the grazing days you entered, winter hay is extra. Use the Winter Hay Calculator for that.';
+    last='Stocking rate: '+acres+' acres × '+y+' t/ac × '+Math.round(util*100)+'% used = '+fmt(eaten,1)+' tons. '+name+' needs '+fmt(needPer,2)+' t over '+days+' days → carries '+fmt(canCarry,1)+' head ('+fmt(acresPer,1)+' ac/head). Plan '+head+' head: '+v+(gap>0?'; hay gap '+fmt(hayTons,1)+' t':'')+'.';
+  }
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); f[k].addEventListener('change',calc); });
+  $('psform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.acres.value=10;f.yield.value='3.5';f.days.value=270;f.util.value='0.50';f.animal.selectedIndex=1;f.head.value=4;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

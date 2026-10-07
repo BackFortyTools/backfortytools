@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicken Coop Size Calculator: Coop, Run, Roost and Nest Boxes | Back Forty Tools</title>
+<meta name="description" content="Free chicken coop size calculator. Enter number of birds and breed to get coop square footage, run size, roost length, nest box count, ventilation and bedding, with suggested dimensions.">
+<link rel="canonical" href="https://backfortytools.com/chicken-coop-size-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chicken Coop Size Calculator">
+<meta property="og:description" content="Free chicken coop size calculator. Enter number of birds and breed to get coop square footage, run size, roost length, nest box count, ventilation and bedding, with suggested dimensions.">
+<meta property="og:url" content="https://backfortytools.com/chicken-coop-size-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Chicken Coop Size Calculator", "url": "https://backfortytools.com/chicken-coop-size-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free chicken coop size calculator. Enter number of birds and breed to get coop square footage, run size, roost length, nest box count, ventilation and bedding, with suggested dimensions.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How big should a coop be for 6 chickens?", "acceptedAnswer": {"@type": "Answer", "text": "24 square feet of floor (4 by 6), a 60-square-foot run, 4.5 feet of roost and 2 nest boxes. A 4 by 8 coop gives you room for two more, which you will want."}}, {"@type": "Question", "name": "How many chickens fit in a 4x8 coop?", "acceptedAnswer": {"@type": "Answer", "text": "Eight standard hens comfortably, ten if they free-range daily, six if they'll be locked in through winter. Twelve bantams."}}, {"@type": "Question", "name": "How much run space per chicken?", "acceptedAnswer": {"@type": "Answer", "text": "10 square feet each for standard breeds, 8 if they get out to forage regularly. Less than that and the run turns to bare mud and manure within a month."}}, {"@type": "Question", "name": "How many nest boxes for 10 chickens?", "acceptedAnswer": {"@type": "Answer", "text": "Three. One box per four hens is plenty; they'll all want the same one anyway."}}, {"@type": "Question", "name": "Do chickens need a run if they free-range?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for the days you can't let them out and for the first week in a new place. Size it at 8 square feet per bird instead of 10."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Poultry</div>
+  <h1>How big does the chicken coop need to be?</h1>
+  <p class="lede">Birds and breed in; coop floor, run, roost length, nest boxes, ventilation and bedding out, in the numbers extension poultry guides use.</p>
+</header>
+<section class="calc" aria-label="Chicken coop size calculator">
+  <form class="panel" id="cpform" autocomplete="off">
+    <h2>Your flock</h2>
+    <div class="grid">
+      <label>Number of birds
+        <input id="birds" type="number" min="1" max="500" step="1" value="8" inputmode="numeric">
+      </label>
+      <label>Breed size
+        <select id="size">
+          <option value="bantam" data-coop="2" data-run="5" data-roost="6" data-nest="5">Bantam</option>
+          <option value="standard" data-coop="4" data-run="10" data-roost="9" data-nest="4" selected>Standard (Leghorn, sex-link, Australorp)</option>
+          <option value="large" data-coop="5" data-run="12" data-roost="12" data-nest="3">Large / dual-purpose (Orpington, Brahma, Jersey Giant)</option>
+          <option value="duck" data-coop="5" data-run="15" data-roost="0" data-nest="3">Ducks</option>
+        </select>
+      </label>
+      <label>How much time outside?
+        <select id="access">
+          <option value="1.5">Locked in the coop most days (cold climate, predators)</option>
+          <option value="1" selected>Coop at night, run by day</option>
+          <option value="0.75">Free-range most days</option>
+        </select>
+      </label>
+      <label>Plan to grow the flock?
+        <select id="grow">
+          <option value="0" selected>No, this is it</option>
+          <option value="0.25">Maybe a few more (+25%)</option>
+          <option value="0.5">Chicken math is real (+50%)</option>
+        </select>
+      </label>
+      <label>Coop shape <small>sets the footprint suggestion</small>
+        <select id="shape">
+          <option value="1.5" selected>Rectangle, 3:2</option>
+          <option value="1">Square</option>
+          <option value="2">Long and narrow, 2:1</option>
+        </select>
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Coop floor</div>
+      <div class="big" id="r-coop">—</div>
+      <div class="sub" id="r-coopdim">—</div>
+    </div>
+    <dl class="rows">
+      <dt class="total">Run</dt><dd class="total" id="r-run">—</dd>
+      <dt>Suggested run footprint</dt><dd id="r-rundim">—</dd>
+      <dt class="total">Roost bar</dt><dd class="total" id="r-roost">—</dd>
+      <dt>Nest boxes</dt><dd id="r-nest">—</dd>
+      <dt>Feeder trough length</dt><dd id="r-feed">—</dd>
+      <dt>Waterers</dt><dd id="r-water">—</dd>
+      <dt>Ventilation (openings, not drafts)</dt><dd id="r-vent">—</dd>
+      <dt>Pop door</dt><dd id="r-door">—</dd>
+      <dt class="total">Bedding per month, deep litter</dt><dd class="total" id="r-bed">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy spec</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Build it once</h2>
+  <p>Most second coops get built because the first one was too small or a raccoon got in.</p>
+  <ul>
+<li><strong>Hardware cloth, ½-inch</strong><span>The only wire that stops raccoons, weasels and rats. Chicken wire keeps chickens in; it keeps nothing out.</span><br><a href="https://www.tractorsupply.com/tsc/search/hardware%20cloth" rel="sponsored nofollow" target="_blank">Shop hardware cloth →</a></li>
+<li><strong>Automatic coop door</strong><span>Opens at first light and closes at dusk. The one upgrade every coop owner wishes they'd done first.</span><br><a href="https://www.amazon.com/s?k=automatic+chicken+coop+door" rel="sponsored nofollow" target="_blank">Shop coop doors →</a></li>
+<li><strong>Roll-away nest box</strong><span>Eggs roll to a covered tray the second they're laid. No egg-eating, no broken eggs, no poop on them.</span><br><a href="https://www.amazon.com/s?k=roll+away+nest+box" rel="sponsored nofollow" target="_blank">Shop nest boxes →</a></li>
+<li><strong>Pine shavings, compressed bale</strong><span>Deep-litter bedding that composts under the birds. One bale covers a 4 by 8 coop 4 inches deep.</span><br><a href="https://www.tractorsupply.com/tsc/search/pine%20shavings" rel="sponsored nofollow" target="_blank">Shop shavings →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>Every extension poultry guide uses the same square-foot-per-bird rules. The numbers below are the ones that keep hens from pecking each other, keep the coop dry, and keep eggs in the boxes instead of on the floor.</p>
+  <div class="formula">coop = birds × 4 sq ft &nbsp;·&nbsp; run = birds × 10 sq ft &nbsp;·&nbsp; roost = birds × 9 in &nbsp;·&nbsp; 1 nest box per 4 hens</div>
+  <p>Eight standard hens need a 32-square-foot coop (a 4 by 8 sheet of plywood is the floor, which is why so many coops are that size), an 80-square-foot run, 6 feet of roost and 2 nest boxes. Lock them inside through a northern winter and the coop should grow by half; let them free-range daily and you can shave a quarter off.</p>
+
+  <h2>Space per bird</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Bird</th><th>Coop floor</th><th>Run</th><th>Roost</th><th>Hens per nest box</th></tr></thead>
+    <tbody>
+      <tr><td>Bantam</td><td>2 sq ft</td><td>5 sq ft</td><td>6 in</td><td>5</td></tr>
+      <tr><td>Standard layer</td><td>3–4 sq ft</td><td>8–10 sq ft</td><td>8–10 in</td><td>4</td></tr>
+      <tr><td>Large / dual-purpose</td><td>4–5 sq ft</td><td>10–12 sq ft</td><td>12 in</td><td>3</td></tr>
+      <tr><td>Meat birds (Cornish Cross)</td><td>2 sq ft in tractor</td><td>n/a</td><td>none</td><td>none</td></tr>
+      <tr><td>Ducks</td><td>4–6 sq ft</td><td>15 sq ft + water</td><td>none, floor nests</td><td>3</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Why crowding costs you eggs</h2>
+  <p>Under about 3 square feet per bird, flocks start feather-pecking, egg-eating and bullying the lowest hen off the feeder. Ammonia builds faster than bedding can absorb it, and damp litter is where coccidiosis and respiratory trouble start. Hens that are stressed lay less, so a cheap coop that is too small is the most expensive coop you can build.</p>
+
+  <h2>Ventilation without drafts</h2>
+  <p>A coop needs about one square foot of permanent opening per ten square feet of floor, placed high, above roost height, so moist air leaves without wind blowing across the birds. Hardware cloth over the openings, never chicken wire; raccoons go straight through chicken wire. In the South, add a second set of openings you can close in January and open in June.</p>
+
+  <h2>Roosts and nests</h2>
+  <p>A 2 by 4 laid flat (wide side up) is the roost most backyard keepers settle on: hens can sit on their feet in the cold. Set it 18 to 24 inches off the floor, higher than the nest boxes, or they'll sleep in the boxes and foul the eggs. Nest boxes are 12 by 12 by 12 inches for standard breeds, 14 inches for the big ones, with a lip to hold bedding in and a slanted top so nobody roosts on it.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How big should a coop be for 6 chickens?</summary><p>24 square feet of floor (4 by 6), a 60-square-foot run, 4.5 feet of roost and 2 nest boxes. A 4 by 8 coop gives you room for two more, which you will want.</p></details>
+<details><summary>How many chickens fit in a 4x8 coop?</summary><p>Eight standard hens comfortably, ten if they free-range daily, six if they'll be locked in through winter. Twelve bantams.</p></details>
+<details><summary>How much run space per chicken?</summary><p>10 square feet each for standard breeds, 8 if they get out to forage regularly. Less than that and the run turns to bare mud and manure within a month.</p></details>
+<details><summary>How many nest boxes for 10 chickens?</summary><p>Three. One box per four hens is plenty; they'll all want the same one anyway.</p></details>
+<details><summary>Do chickens need a run if they free-range?</summary><p>Yes, for the days you can't let them out and for the first week in a new place. Size it at 8 square feet per bird instead of 10.</p></details>
+</article>
+<footer>
+  Space, roost and nest guidelines from the University of Kentucky, Penn State and Oregon State poultry extension programs. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={birds:$('birds'),size:$('size'),access:$('access'),grow:$('grow'),shape:$('shape')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var last='';
+  function dims(area,ratio){ var w=Math.sqrt(area/ratio); var l=w*ratio; var r=function(x){return Math.ceil(x*2)/2}; return r(w)+' × '+r(l)+' ft'; }
+  function calc(){
+    var n=Math.max(0,+f.birds.value||0), o=f.size.options[f.size.selectedIndex];
+    var acc=+f.access.value, grow=+f.grow.value, ratio=+f.shape.value;
+    var N=n*(1+grow);
+    var coop=Math.ceil(N*(+o.getAttribute('data-coop'))*acc);
+    var run=Math.ceil(N*(+o.getAttribute('data-run'))*(acc<1?0.8:1));
+    var roostIn=N*(+o.getAttribute('data-roost'));
+    var nest=Math.max(1,Math.ceil(N/(+o.getAttribute('data-nest'))));
+    var isDuck=f.size.value==='duck';
+    $('r-coop').textContent=fmt(coop)+' sq ft';
+    $('r-coopdim').textContent='about '+dims(coop,ratio)+(grow?' (sized for '+fmt(N)+' birds)':'');
+    $('r-run').textContent=fmt(run)+' sq ft'+(isDuck?' + a pool':'');
+    $('r-rundim').textContent=dims(run,ratio);
+    $('r-roost').textContent=isDuck?'none, ducks sleep on the floor':fmt(roostIn/12,1)+' ft total ('+fmt(roostIn)+' in)';
+    $('r-nest').textContent=fmt(nest)+(isDuck?' floor nests':' boxes, 12×12×12 in');
+    $('r-feed').textContent=fmt(N*3)+' in of trough, or '+Math.max(1,Math.ceil(N/15))+' hanging feeder'+(N>15?'s':'');
+    $('r-water').textContent=Math.max(1,Math.ceil(N/10))+' × 3-gal'+(isDuck?' + open water':'');
+    $('r-vent').textContent=fmt(coop/10,1)+' sq ft, high on the wall';
+    $('r-door').textContent=(f.size.value==='large'||isDuck)?'12 × 14 in':'10 × 12 in';
+    $('r-bed').textContent=Math.max(1,Math.ceil(coop/32))+' bale'+(coop>32?'s':'')+' pine shavings';
+    $('r-note').textContent='A 4 × 8 ft floor (one sheet of plywood) is 32 sq ft and the most common backyard coop size for a reason.';
+    last='Coop for '+n+' '+o.text+': coop '+coop+' sq ft ('+dims(coop,ratio)+'), run '+run+' sq ft, roost '+fmt(roostIn/12,1)+' ft, '+nest+' nest boxes, vent '+fmt(coop/10,1)+' sq ft.';
+  }
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); f[k].addEventListener('change',calc); });
+  $('cpform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.birds.value=8;f.size.value='standard';f.access.value='1';f.grow.value='0';f.shape.value='1.5';calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

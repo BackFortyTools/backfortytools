@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravel, Dirt, Sand and Concrete Calculator: Yards, Tons and Cost | Back Forty Tools</title>
+<meta name="description" content="Free bulk material calculator for gravel, crusher run, topsoil, fill dirt, sand, concrete and mulch. Enter area and depth to get cubic yards, tons, bags, truckloads and cost, with compaction allowance.">
+<link rel="canonical" href="https://backfortytools.com/gravel-dirt-concrete-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gravel, Dirt and Concrete Calculator">
+<meta property="og:description" content="Free bulk material calculator for gravel, crusher run, topsoil, fill dirt, sand, concrete and mulch. Enter area and depth to get cubic yards, tons, bags, truckloads and cost, with compaction allowance.">
+<meta property="og:url" content="https://backfortytools.com/gravel-dirt-concrete-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Gravel, Dirt and Concrete Calculator", "url": "https://backfortytools.com/gravel-dirt-concrete-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free bulk material calculator for gravel, crusher run, topsoil, fill dirt, sand, concrete and mulch. Enter area and depth to get cubic yards, tons, bags, truckloads and cost, with compaction allowance.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many tons of gravel do I need for a driveway?", "acceptedAnswer": {"@type": "Answer", "text": "For a 4-inch layer, multiply length × width in feet by 0.0173 to get tons of crusher run, then add 15% for compaction. A 100 × 12 foot driveway needs about 24 tons."}}, {"@type": "Question", "name": "How much does a cubic yard of gravel weigh?", "acceptedAnswer": {"@type": "Answer", "text": "About 2,800 pounds, or 1.4 tons, for crusher run and #57 stone. Pea gravel is slightly lighter; screenings and stone dust slightly heavier."}}, {"@type": "Question", "name": "How many cubic yards in a dump truck?", "acceptedAnswer": {"@type": "Answer", "text": "A tandem dump truck holds 10 to 14 cubic yards of gravel, which is 15 to 20 tons. A single-axle holds 5 to 7 yards. Ask your supplier what their truck carries; it varies."}}, {"@type": "Question", "name": "How many 80 lb bags of concrete make a yard?", "acceptedAnswer": {"@type": "Answer", "text": "45 bags. Each 80-pound bag yields 0.6 cubic feet and a cubic yard is 27 cubic feet. A 60-pound bag yields 0.45 cubic feet, so 60 of those."}}, {"@type": "Question", "name": "How much topsoil do I need to cover 1,000 square feet?", "acceptedAnswer": {"@type": "Answer", "text": "At 2 inches deep, 6.2 cubic yards, which is about 7 tons loose. At 4 inches, 12.4 yards. Order 10 to 20 percent extra; topsoil settles."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Grading & projects</div>
+  <h1>How much gravel, dirt, sand or concrete do you need?</h1>
+  <p class="lede">Measure the area, pick the material, set the depth. Get cubic yards, tons, bags, truckloads and a cost, with compaction already added so you don't come up short.</p>
+</header>
+<section class="calc" aria-label="Gravel, dirt and concrete calculator">
+  <form class="panel" id="bmform" autocomplete="off">
+    <h2>Your project</h2>
+    <div class="grid">
+      <label>Material
+        <select id="mat">
+          <optgroup label="Gravel and stone">
+            <option value="1.40" data-cat="gravel" selected>Crusher run / #57 gravel (1.40 t/yd³)</option>
+            <option value="1.35" data-cat="gravel">Pea gravel / river rock (1.35)</option>
+            <option value="1.25" data-cat="gravel">Limestone #3 / rip rap (1.25)</option>
+            <option value="1.50" data-cat="gravel">Granite screenings / M10 dust (1.50)</option>
+          </optgroup>
+          <optgroup label="Dirt and sand">
+            <option value="1.10" data-cat="dirt">Topsoil, loose (1.10)</option>
+            <option value="1.30" data-cat="dirt">Fill dirt / clay (1.30)</option>
+            <option value="1.35" data-cat="dirt">Sand, masonry or concrete (1.35)</option>
+            <option value="0.80" data-cat="dirt">Garden soil / compost mix (0.80)</option>
+          </optgroup>
+          <optgroup label="Concrete">
+            <option value="2.0" data-cat="concrete">Concrete, ready-mix or bags</option>
+          </optgroup>
+          <optgroup label="Mulch and bedding">
+            <option value="0.40" data-cat="mulch">Hardwood mulch (0.40)</option>
+            <option value="0.30" data-cat="mulch">Pine straw / bark nuggets (0.30)</option>
+          </optgroup>
+        </select>
+      </label>
+      <label>Shape
+        <select id="shape">
+          <option value="rect" selected>Rectangle (pad, driveway, bed)</option>
+          <option value="circle">Circle (fire pit, round pad)</option>
+          <option value="tri">Triangle</option>
+        </select>
+      </label>
+      <label id="w-l">Length <small>feet</small><input id="L" type="number" min="0" step="1" value="60" inputmode="decimal"></label>
+      <label id="w-w">Width <small>feet</small><input id="W" type="number" min="0" step="1" value="12" inputmode="decimal"></label>
+      <label id="w-d" hidden>Diameter <small>feet</small><input id="D" type="number" min="0" step="1" value="12" inputmode="decimal"></label>
+      <label>Depth <small>inches</small><input id="depth" type="number" min="0.5" step="0.5" value="4" inputmode="decimal"></label>
+      <label>Compaction / settling allowance <small>%; gravel 15, dirt 20, concrete 5</small>
+        <input id="waste" type="number" min="0" max="50" step="5" value="15" inputmode="numeric">
+      </label>
+      <label>Price <small id="pl">$ per ton delivered</small>
+        <input id="price" type="number" min="0" step="1" value="38" inputmode="decimal">
+      </label>
+      <label>Truck size <small>tons per load</small>
+        <input id="truck" type="number" min="1" step="1" value="18" inputmode="numeric">
+      </label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Order this much</div>
+      <div class="big" id="r-main">—</div>
+      <div class="sub" id="r-sub">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Area</dt><dd id="r-area">—</dd>
+      <dt>Volume, exact</dt><dd id="r-vol">—</dd>
+      <dt>With allowance</dt><dd id="r-volw">—</dd>
+      <dt class="total">Cubic yards</dt><dd class="total" id="r-yd">—</dd>
+      <dt id="l-tons">Tons</dt><dd id="r-tons">—</dd>
+      <dt id="l-bags">Bags</dt><dd id="r-bags">—</dd>
+      <dt>Truckloads</dt><dd id="r-loads">—</dd>
+      <dt>Pickup loads (½ ton, ~¾ yd³)</dt><dd id="r-pickup">—</dd>
+      <dt class="total">Estimated cost</dt><dd class="total cost" id="r-cost">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy summary</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>Make the first load the only load</h2>
+  <p>Most second orders happen because the base wasn't compacted or the gravel sank into soft ground.</p>
+  <ul>
+<li><strong>Plate compactor (rent or buy)</strong><span>Gravel that isn't compacted is gravel you'll re-order next year. A rental runs $70 a day.</span><br><a href="https://www.amazon.com/s?k=plate+compactor" rel="sponsored nofollow" target="_blank">Shop plate compactors →</a></li>
+<li><strong>Landscape rake, 36-inch</strong><span>Spreads a dump-truck load evenly without renting a skid steer.</span><br><a href="https://www.tractorsupply.com/tsc/search/landscape%20rake" rel="sponsored nofollow" target="_blank">Shop landscape rakes →</a></li>
+<li><strong>Geotextile fabric</strong><span>Under the gravel on soft ground. Stops the stone from sinking into the clay, which is where half of all driveway gravel goes.</span><br><a href="https://www.amazon.com/s?k=driveway+geotextile+fabric" rel="sponsored nofollow" target="_blank">Shop driveway fabric →</a></li>
+<li><strong>Concrete float and edger set</strong><span>For the slab work the calculator just sized. Cheap tools, big difference in the finish.</span><br><a href="https://www.amazon.com/s?k=concrete+finishing+tool+set" rel="sponsored nofollow" target="_blank">Shop finishing tools →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>Every bulk material is sold by the cubic yard or the ton, and the quarry converts between them with a density. We do the same.</p>
+  <div class="formula">length × width × (depth ÷ 12) ÷ 27 = cubic yards &nbsp;·&nbsp; cubic yards × density = tons</div>
+  <p>A 60 by 12 foot driveway topped with 4 inches of crusher run is 240 cubic feet, or 8.9 cubic yards. Crusher run weighs about 1.4 tons a yard, so that is 12.4 tons before compaction. Gravel packs down 10 to 20 percent when you run a plate compactor or just drive on it, so order 14 to 15 tons. That is one full tandem dump truck, and at $38 a ton delivered it comes to about $550.</p>
+
+  <h2>Weight per cubic yard</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Material</th><th>Tons per yd³</th><th>Pounds per yd³</th></tr></thead>
+    <tbody>
+      <tr><td>Crusher run, #57, #67 gravel</td><td>1.35–1.45</td><td>2,700–2,900</td></tr>
+      <tr><td>Pea gravel, river rock</td><td>1.30–1.40</td><td>2,600–2,800</td></tr>
+      <tr><td>Granite screenings, M10</td><td>1.45–1.55</td><td>2,900–3,100</td></tr>
+      <tr><td>Sand, damp</td><td>1.30–1.40</td><td>2,600–2,800</td></tr>
+      <tr><td>Topsoil, loose</td><td>1.00–1.20</td><td>2,000–2,400</td></tr>
+      <tr><td>Fill dirt, clay, damp</td><td>1.25–1.40</td><td>2,500–2,800</td></tr>
+      <tr><td>Concrete, cured</td><td>2.0</td><td>4,000</td></tr>
+      <tr><td>Hardwood mulch</td><td>0.35–0.45</td><td>700–900</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>How deep?</h2>
+  <p>A gravel driveway on firm ground wants 4 inches of base; on soft or clay ground, 6 to 8 inches, ideally in two lifts with the bigger stone (#3 or #4) on the bottom. A barn pad or parking area that will see trucks: 6 inches minimum. Walkways and patios, 2 to 3 inches over compacted base. For concrete, a sidewalk is 4 inches, a driveway or shop slab 5 to 6, and anything that will carry a tractor or a loaded trailer 6 inches with rebar.</p>
+
+  <h2>Concrete: bags or a truck?</h2>
+  <p>An 80-pound bag of concrete mix yields 0.6 cubic feet; it takes 45 bags to make a yard. Under about a yard, bags make sense. Above that, call a ready-mix plant: most charge $140 to $180 a yard in 2026 with a short-load fee under 4 or 5 yards. A 12 by 12 slab at 4 inches is 1.8 yards, which is 80 bags of mixing by hand or one short truck. The truck wins.</p>
+
+  <h2>Truckloads</h2>
+  <p>A single-axle dump truck carries 8 to 10 tons; a tandem 15 to 20; a tri-axle 22 to 25. Most quarries and landscape yards deliver by the full load or charge the same delivery fee for a partial, so sizing a project to fill a truck saves money. A half-ton pickup can haul about three quarters of a yard of gravel (1 ton) safely, which is why a driveway takes a dump truck and a flower bed takes a pickup.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How many tons of gravel do I need for a driveway?</summary><p>For a 4-inch layer, multiply length × width in feet by 0.0173 to get tons of crusher run, then add 15% for compaction. A 100 × 12 foot driveway needs about 24 tons.</p></details>
+<details><summary>How much does a cubic yard of gravel weigh?</summary><p>About 2,800 pounds, or 1.4 tons, for crusher run and #57 stone. Pea gravel is slightly lighter; screenings and stone dust slightly heavier.</p></details>
+<details><summary>How many cubic yards in a dump truck?</summary><p>A tandem dump truck holds 10 to 14 cubic yards of gravel, which is 15 to 20 tons. A single-axle holds 5 to 7 yards. Ask your supplier what their truck carries; it varies.</p></details>
+<details><summary>How many 80 lb bags of concrete make a yard?</summary><p>45 bags. Each 80-pound bag yields 0.6 cubic feet and a cubic yard is 27 cubic feet. A 60-pound bag yields 0.45 cubic feet, so 60 of those.</p></details>
+<details><summary>How much topsoil do I need to cover 1,000 square feet?</summary><p>At 2 inches deep, 6.2 cubic yards, which is about 7 tons loose. At 4 inches, 12.4 yards. Order 10 to 20 percent extra; topsoil settles.</p></details>
+</article>
+<footer>
+  Material densities from the National Stone, Sand and Gravel Association and USDA NRCS engineering tables; prices from 2026 Southeastern quarry and ready-mix averages. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={mat:$('mat'),shape:$('shape'),L:$('L'),W:$('W'),D:$('D'),depth:$('depth'),waste:$('waste'),price:$('price'),truck:$('truck')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var usd=function(n){return '$'+fmt(n,0)};
+  var last='';
+  function cat(){return f.mat.options[f.mat.selectedIndex].getAttribute('data-cat')}
+  function showShape(){ var s=f.shape.value; $('w-d').hidden=s!=='circle'; $('w-l').hidden=s==='circle'; $('w-w').hidden=s==='circle'; }
+  function matChanged(){
+    var c=cat();
+    var def={gravel:[15,38,'$ per ton delivered'],dirt:[20,30,'$ per ton delivered'],concrete:[5,160,'$ per cubic yard, ready-mix'],mulch:[10,35,'$ per cubic yard']}[c];
+    f.waste.value=def[0]; f.price.value=def[1]; $('pl').textContent=def[2];
+  }
+  function calc(){
+    var s=f.shape.value, area;
+    if(s==='circle'){var r=(+f.D.value||0)/2; area=Math.PI*r*r;}
+    else if(s==='tri'){area=(+f.L.value||0)*(+f.W.value||0)/2;}
+    else area=(+f.L.value||0)*(+f.W.value||0);
+    var depth=+f.depth.value||0, waste=(+f.waste.value||0)/100, dens=+f.mat.value, price=+f.price.value||0, truck=+f.truck.value||18;
+    var c=cat();
+    var cf=area*depth/12;
+    var yd=cf/27;
+    var ydw=yd*(1+waste);
+    var tons=ydw*dens;
+    var main,sub,bags,bagsLabel,cost,loads;
+    if(c==='concrete'){
+      bags=Math.ceil(ydw*45); bagsLabel='80-lb bags (45/yd³)';
+      cost=ydw*price; loads=Math.ceil(ydw/10);
+      main=fmt(ydw,2)+' yd³'; sub='ready-mix, or '+fmt(bags)+' 80-lb bags';
+      $('l-tons').textContent='Weight when cured'; $('r-tons').textContent=fmt(tons,1)+' tons';
+    } else if(c==='mulch'){
+      bags=Math.ceil(ydw*13.5); bagsLabel='2-cu-ft bags';
+      cost=ydw*price; loads=Math.ceil(ydw/12);
+      main=fmt(ydw,1)+' yd³'; sub='bulk, or '+fmt(bags)+' 2-cu-ft bags';
+      $('l-tons').textContent='Weight'; $('r-tons').textContent=fmt(tons,1)+' tons';
+    } else {
+      bags=Math.ceil(ydw*54); bagsLabel='0.5-cu-ft bags (54/yd³)';
+      cost=tons*price; loads=Math.ceil(tons/truck);
+      main=fmt(tons,1)+' tons'; sub=fmt(ydw,1)+' cubic yards with '+Math.round(waste*100)+'% allowance';
+      $('l-tons').textContent='Tons'; $('r-tons').textContent=fmt(tons,1);
+    }
+    $('r-main').textContent=main; $('r-sub').textContent=sub;
+    $('r-area').textContent=fmt(area)+' sq ft';
+    $('r-vol').textContent=fmt(cf)+' cu ft = '+fmt(yd,2)+' yd³';
+    $('r-volw').textContent=fmt(ydw,2)+' yd³';
+    $('r-yd').textContent=fmt(ydw,1);
+    $('l-bags').textContent=bagsLabel; $('r-bags').textContent=fmt(bags);
+    $('r-loads').textContent=c==='concrete'?fmt(loads)+' mixer truck'+(loads===1?'':'s'):fmt(loads)+' @ '+truck+' tons';
+    $('r-pickup').textContent=c==='concrete'?'—':fmt(Math.ceil(ydw/0.75));
+    $('r-cost').textContent=price>0?usd(cost):'—';
+    $('r-note').textContent=c==='concrete'?'Under 1 yard, bags are fine. Over that, call for a truck; most plants charge a short-load fee under 4–5 yards.':'Suppliers round to the half ton. Ask what one truckload is before you order a partial.';
+    last='Material: '+f.mat.options[f.mat.selectedIndex].text+', '+fmt(area)+' sq ft × '+depth+' in = '+fmt(yd,2)+' yd³, +'+Math.round(waste*100)+'% = '+fmt(ydw,2)+' yd³'+(c==='gravel'||c==='dirt'?' = '+fmt(tons,1)+' tons':'')+'. '+bags+' '+bagsLabel+', '+loads+' truckloads'+(price>0?', ≈ '+usd(cost):'')+'.';
+  }
+  f.mat.addEventListener('change',function(){matChanged();calc();});
+  f.shape.addEventListener('change',function(){showShape();calc();});
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); });
+  $('bmform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.mat.selectedIndex=0;matChanged();f.shape.value='rect';showShape();f.L.value=60;f.W.value=12;f.D.value=12;f.depth.value=4;f.truck.value=18;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  showShape(); calc();
+})();
+</script>
+</body>
+</html>

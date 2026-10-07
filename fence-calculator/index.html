@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fence Calculator: Posts, Wire and Cost for Farm Fencing | Back Forty Tools</title>
+<meta name="description" content="Free farm fence calculator. Enter length (or acres), fence type and post spacing to get line posts, corner posts, brace rails, wire rolls, hardware, gates and a materials cost estimate.">
+<link rel="canonical" href="https://backfortytools.com/fence-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Farm Fence Calculator">
+<meta property="og:description" content="Free farm fence calculator. Enter length (or acres), fence type and post spacing to get line posts, corner posts, brace rails, wire rolls, hardware, gates and a materials cost estimate.">
+<meta property="og:url" content="https://backfortytools.com/fence-calculator/">
+<meta property="og:site_name" content="Back Forty Tools">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5d3a'/%3E%3Cpath d='M8 22h16M8 17h16M8 12h16' stroke='%23eef6ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Farm Fence Calculator", "url": "https://backfortytools.com/fence-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free farm fence calculator. Enter length (or acres), fence type and post spacing to get line posts, corner posts, brace rails, wire rolls, hardware, gates and a materials cost estimate.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many T-posts do I need for 1 acre?", "acceptedAnswer": {"@type": "Answer", "text": "A square acre is about 835 feet around. At 10-foot spacing that is 84 line posts, plus 8 wooden corner posts and 4 brace rails. Add a gate and 90 T-posts is a safe buy."}}, {"@type": "Question", "name": "How much does it cost to fence 5 acres?", "acceptedAnswer": {"@type": "Answer", "text": "About 1,870 feet of fence for a square 5 acres. Materials run roughly $2,000 for barbed wire, $3,400 for woven wire, $1,700 for high-tensile electric or $18,000 for board fence. Installed, double those numbers."}}, {"@type": "Question", "name": "How far apart should fence posts be?", "acceptedAnswer": {"@type": "Answer", "text": "8 to 12 feet for woven wire, 10 to 15 for barbed, 20 to 30 for high-tensile electric, and 8 feet for board fence. Closer on curves, hills and where livestock crowd a corner."}}, {"@type": "Question", "name": "How many feet of fence is a quarter mile?", "acceptedAnswer": {"@type": "Answer", "text": "1,320 feet. A roll of barbed wire is 1,320 feet for a reason; a 330-foot roll of woven wire is a quarter of that."}}, {"@type": "Question", "name": "How deep should a corner post be set?", "acceptedAnswer": {"@type": "Answer", "text": "One third of its length, minimum 3 feet, in a hole at least twice the post diameter. Tamp dry, or use concrete only below grade so the post doesn't rot at the collar."}}]}]}</script>
+<style>
+/* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
+:root{
+  --bg:#f6f2ea;          /* hay-dust cream */
+  --surface:#fffdf8;
+  --fg:#2a241c;
+  --muted:#6d6252;
+  --line:#d9cfbd;
+  --accent:#7a5c1e;      /* cured-timothy brown */
+  --accent-ink:#fff8e8;
+  --tag:#2f5d3a;         /* feed-tag green */
+  --tag-ink:#eef6ee;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915;--surface:#262119;--fg:#efe7d8;--muted:#b3a68f;--line:#443b2e;
+  --accent:#d9b25c;--accent-ink:#1c1915;--tag:#7fbf8c;--tag-ink:#13201a;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:900px;margin:0 auto}
+header{padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.1;margin:.25rem 0 .5rem;text-wrap:balance}
+.lede{max-width:62ch;margin:0;color:var(--muted);font-size:1.05rem}
+
+.calc{margin-top:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 14px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:460px){.grid{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.span2{grid-column:1/-1}
+fieldset{border:0;padding:0;margin:0;display:contents}
+
+.results{display:flex;flex-direction:column;gap:12px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:18px 20px;position:relative}
+.tag::before{content:"";position:absolute;top:10px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--tag-ink);opacity:.6}
+.tag .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.tag .big{font-family:var(--display);font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.tag .sub{font-size:.95rem;opacity:.9}
+.rows{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);row-gap:8px;column-gap:16px;font-variant-numeric:tabular-nums;padding:4px 2px}
+.rows dt{color:var(--muted);margin:0}
+.rows dd{margin:0;font-weight:700;text-align:right;overflow-wrap:anywhere}
+.rows .total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.cost{font-family:var(--display);font-size:1.35rem}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:4px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.copied{font-size:.85rem;color:var(--tag);font-weight:700}
+
+.gear{margin-top:32px;border:1px solid var(--line);background:var(--surface);padding:18px 20px}
+.gear h2{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.gear p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.gear ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gear li{border:1px solid var(--line);padding:12px;min-width:0}
+.gear li strong{display:block;font-family:var(--display);font-size:1rem}
+.gear li span{font-size:.9rem;color:var(--muted)}
+.gear a{color:var(--accent);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.gear a:hover{text-decoration:underline}
+.disc{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+
+article{max-width:68ch;margin-top:40px}
+article h2{font-family:var(--display);font-size:1.5rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+article h3{font-family:var(--display);font-size:1.15rem;margin:1.6rem 0 .4rem}
+article p{margin:0 0 1rem}
+.tbl{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td:last-child,th:last-child{text-align:right}
+.formula{font-family:var(--display);background:var(--surface);border-left:4px solid var(--accent);padding:12px 16px;margin:1rem 0}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--display)}
+details p{margin-top:.5rem}
+footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Fencing</div>
+  <h1>How many posts, how much wire, what will it cost?</h1>
+  <p class="lede">Length, fence type and spacing in; a shopping list and a materials total out. Prices are editable so the number matches your farm store.</p>
+</header>
+<section class="calc" aria-label="Fence calculator">
+  <form class="panel" id="fcform" autocomplete="off">
+    <h2>Your fence line</h2>
+    <div class="grid">
+      <label>How do you know the length?
+        <select id="mode">
+          <option value="len" selected>I know the total feet</option>
+          <option value="rect">Rectangle, length × width</option>
+          <option value="acres">Square-ish field, I know the acres</option>
+        </select>
+      </label>
+      <label id="w-len">Total fence length <small>feet</small>
+        <input id="len" type="number" min="10" step="10" value="1320" inputmode="numeric">
+      </label>
+      <label id="w-l" hidden>Length <small>feet</small><input id="dl" type="number" min="10" step="10" value="400" inputmode="numeric"></label>
+      <label id="w-w" hidden>Width <small>feet</small><input id="dw" type="number" min="10" step="10" value="250" inputmode="numeric"></label>
+      <label id="w-ac" hidden>Acres<input id="ac" type="number" min="0.1" step="0.5" value="5" inputmode="decimal"></label>
+      <label>Fence type
+        <select id="type">
+          <option value="woven" data-sp="10" data-str="1" data-ppf="1.10" selected>Woven wire / field fence</option>
+          <option value="barbed" data-sp="12" data-str="5" data-ppf="0.11">Barbed wire, 5 strand</option>
+          <option value="hitensile" data-sp="20" data-str="5" data-ppf="0.06">High-tensile electric, 5 strand</option>
+          <option value="board" data-sp="8" data-str="4" data-ppf="1.60">Board fence, 4 rail</option>
+          <option value="poly" data-sp="25" data-str="3" data-ppf="0.04">Polywire / temporary electric, 3 strand</option>
+        </select>
+      </label>
+      <label>Post spacing <small>feet</small>
+        <input id="spacing" type="number" min="4" max="40" step="1" value="10" inputmode="numeric">
+      </label>
+      <label>Corners and ends <small>each gets a braced H-assembly</small>
+        <input id="corners" type="number" min="0" step="1" value="4" inputmode="numeric">
+      </label>
+      <label>Gates
+        <input id="gates" type="number" min="0" step="1" value="2" inputmode="numeric">
+      </label>
+      <label>Line post price <small>$ each</small><input id="pp" type="number" min="0" step="0.5" value="6" inputmode="decimal"></label>
+      <label>Corner/brace post price <small>$ each</small><input id="cp" type="number" min="0" step="0.5" value="22" inputmode="decimal"></label>
+      <label>Wire or boards <small>$ per foot of fence, all strands</small><input id="wp" type="number" min="0" step="0.05" value="1.10" inputmode="decimal"></label>
+      <label>Gate price <small>$ each, hung</small><input id="gp" type="number" min="0" step="5" value="160" inputmode="numeric"></label>
+    </div>
+  </form>
+
+  <aside class="panel results" aria-live="polite">
+    <div class="tag">
+      <div class="lbl">Materials estimate</div>
+      <div class="big" id="r-cost">—</div>
+      <div class="sub" id="r-perft">—</div>
+    </div>
+    <dl class="rows">
+      <dt>Fence length</dt><dd id="r-len">—</dd>
+      <dt>Line posts</dt><dd id="r-posts">—</dd>
+      <dt>Corner, end and brace posts</dt><dd id="r-cposts">—</dd>
+      <dt>Brace rails</dt><dd id="r-rails">—</dd>
+      <dt>Wire or boards</dt><dd id="r-wire">—</dd>
+      <dt>Staples / clips / insulators</dt><dd id="r-hw">—</dd>
+      <dt>Gates</dt><dd id="r-gates">—</dd>
+      <dt class="total">Posts cost</dt><dd class="total" id="r-pc">—</dd>
+      <dt>Wire cost</dt><dd id="r-wc">—</dd>
+      <dt>Gates cost</dt><dd id="r-gc">—</dd>
+      <dt>Hardware, 8%</dt><dd id="r-hc">—</dd>
+      <dt class="total">Rough labor if hired</dt><dd class="total" id="r-labor">—</dd>
+    </dl>
+    <p class="note" id="r-note"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn" type="button" id="copy">Copy list</button>
+      <button class="btn ghost" type="button" id="reset">Reset</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+  </aside>
+</section>
+<section class="gear" aria-label="Recommended gear">
+  <h2>The tools that make a fence last</h2>
+  <p>Tight wire and braced corners are the whole difference between a 5-year fence and a 30-year fence.</p>
+  <ul>
+<li><strong>Post driver or post pounder</strong><span>Drives a T-post in under a minute. Rent a gas one for a long run.</span><br><a href="https://www.tractorsupply.com/tsc/search/t%20post%20driver" rel="sponsored nofollow" target="_blank">Shop post drivers →</a></li>
+<li><strong>Fence stretcher / come-along</strong><span>Woven and high-tensile fence only works when it's tight. This is what gets it there.</span><br><a href="https://www.tractorsupply.com/tsc/search/fence%20stretcher" rel="sponsored nofollow" target="_blank">Shop stretchers →</a></li>
+<li><strong>Brace wire and in-line strainers</strong><span>The diagonal wire on every H-brace, plus strainers to re-tension high-tensile each spring.</span><br><a href="https://www.tractorsupply.com/tsc/search/fence%20strainer" rel="sponsored nofollow" target="_blank">Shop strainers →</a></li>
+<li><strong>Fence pliers</strong><span>One tool for staples, splices and twisting. Keep it on the four-wheeler.</span><br><a href="https://www.amazon.com/s?k=fencing+pliers" rel="sponsored nofollow" target="_blank">Shop fence pliers →</a></li>
+  </ul>
+  <p class="disc">Some links are affiliate links. If you buy through them we may earn a small commission at no cost to you. It keeps the calculators free.</p>
+</section>
+<article>
+  <h2>How the calculator works</h2>
+  <p>A fence is posts, something stretched between them, and the corners that hold the tension. The count is simple once you know the length.</p>
+  <div class="formula">line posts = length ÷ spacing &nbsp;·&nbsp; each corner or end = 2 posts + 1 brace rail &nbsp;·&nbsp; wire = length × strands</div>
+  <p>A quarter mile (1,320 feet) of woven wire at 10-foot spacing needs about 132 line posts, four braced corners (8 heavy posts and 4 rails), 1,320 feet of fence and roughly 1,500 staples. In 2026 that is about $2,400 in materials at farm-store prices, or $1.80 a foot. Barbed wire on the same line runs about $1.20 a foot; high-tensile electric about $0.90; four-board about $8 to $12.</p>
+
+  <h2>Fence length by field size</h2>
+  <p>A square field is the cheapest shape to fence. Long narrow fields can need half again as much.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Acres</th><th>Square, feet of fence</th><th>2:1 rectangle</th><th>4:1 rectangle</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>835</td><td>885</td><td>1,045</td></tr>
+      <tr><td>5</td><td>1,867</td><td>1,980</td><td>2,335</td></tr>
+      <tr><td>10</td><td>2,640</td><td>2,800</td><td>3,300</td></tr>
+      <tr><td>20</td><td>3,733</td><td>3,960</td><td>4,670</td></tr>
+      <tr><td>40</td><td>5,280</td><td>5,600</td><td>6,600</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Post spacing by fence type</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Fence</th><th>Line post spacing</th><th>Strands / rails</th><th>Materials, $/ft (2026)</th></tr></thead>
+    <tbody>
+      <tr><td>Woven wire, 47-inch</td><td>8–12 ft</td><td>1 roll</td><td>$1.60–2.20</td></tr>
+      <tr><td>Barbed wire, cattle</td><td>10–15 ft</td><td>4–5</td><td>$1.00–1.40</td></tr>
+      <tr><td>High-tensile electric</td><td>20–30 ft</td><td>3–5</td><td>$0.70–1.10</td></tr>
+      <tr><td>Board, 3 or 4 rail</td><td>8 ft</td><td>3–4</td><td>$8–14</td></tr>
+      <tr><td>Polywire, temporary</td><td>25–50 ft step-ins</td><td>1–3</td><td>$0.15–0.35</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Corners are where fences fail</h2>
+  <p>Every corner, end and gate opening needs a braced assembly: two 6- to 8-inch posts set 3 feet deep, a horizontal rail between them, and a diagonal brace wire. Skip the brace and the corner leans within two winters and the whole run goes slack. The calculator counts two heavy posts and one rail per corner, which is the standard single H-brace; long runs over 600 feet of high-tensile need a double.</p>
+
+  <h2>Labor</h2>
+  <p>Fence contractors in the Southeast charge roughly $2 to $4 a foot for barbed or woven wire installed, $6 to $10 for high-tensile with the energizer, and $15 to $25 for board. Hire out the corners and gates and drive your own line posts and you'll keep most of the savings with little of the frustration.</p>
+
+  <h2>Frequently asked</h2>
+<details><summary>How many T-posts do I need for 1 acre?</summary><p>A square acre is about 835 feet around. At 10-foot spacing that is 84 line posts, plus 8 wooden corner posts and 4 brace rails. Add a gate and 90 T-posts is a safe buy.</p></details>
+<details><summary>How much does it cost to fence 5 acres?</summary><p>About 1,870 feet of fence for a square 5 acres. Materials run roughly $2,000 for barbed wire, $3,400 for woven wire, $1,700 for high-tensile electric or $18,000 for board fence. Installed, double those numbers.</p></details>
+<details><summary>How far apart should fence posts be?</summary><p>8 to 12 feet for woven wire, 10 to 15 for barbed, 20 to 30 for high-tensile electric, and 8 feet for board fence. Closer on curves, hills and where livestock crowd a corner.</p></details>
+<details><summary>How many feet of fence is a quarter mile?</summary><p>1,320 feet. A roll of barbed wire is 1,320 feet for a reason; a 330-foot roll of woven wire is a quarter of that.</p></details>
+<details><summary>How deep should a corner post be set?</summary><p>One third of its length, minimum 3 feet, in a hole at least twice the post diameter. Tamp dry, or use concrete only below grade so the post doesn't rot at the collar.</p></details>
+</article>
+<footer>
+  Spacing and brace guidance from UGA Extension, Penn State Extension and the USDA NRCS fence standards; prices from 2026 farm-store averages. Estimates only.<br>
+  Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
+</footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={mode:$('mode'),len:$('len'),dl:$('dl'),dw:$('dw'),ac:$('ac'),type:$('type'),spacing:$('spacing'),corners:$('corners'),gates:$('gates'),pp:$('pp'),cp:$('cp'),wp:$('wp'),gp:$('gp')};
+  var fmt=function(n,d){return n.toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d==null?0:d})};
+  var usd=function(n){return '$'+fmt(n,0)};
+  var last='';
+  function showMode(){ var m=f.mode.value; $('w-len').hidden=m!=='len'; $('w-l').hidden=m!=='rect'; $('w-w').hidden=m!=='rect'; $('w-ac').hidden=m!=='acres'; }
+  function calc(){
+    var m=f.mode.value, L;
+    if(m==='len') L=+f.len.value||0;
+    else if(m==='rect') L=2*((+f.dl.value||0)+(+f.dw.value||0));
+    else L=4*Math.sqrt((+f.ac.value||0)*43560);
+    var sp=+f.spacing.value||10, corners=+f.corners.value||0, gates=+f.gates.value||0;
+    var o=f.type.options[f.type.selectedIndex]; var strands=+o.getAttribute('data-str'); var t=f.type.value;
+    var netLen=Math.max(0,L-gates*12);
+    var posts=Math.ceil(netLen/sp)-corners;  if(posts<0)posts=0;
+    var cposts=corners*2+gates*2;
+    var rails=corners+gates;
+    var wireFt=netLen*strands;
+    var hw= t==='board'? Math.ceil(posts*strands*2)+' screws/nails' : t==='hitensile'||t==='poly'? fmt(posts*strands)+' insulators' : fmt(posts*(t==='woven'?6:strands))+' staples';
+    var pc=posts*(+f.pp.value||0)+cposts*(+f.cp.value||0)+rails*(+f.cp.value||0)*0.6;
+    var wc=netLen*(+f.wp.value||0);
+    var gc=gates*(+f.gp.value||0);
+    var hc=(pc+wc)*0.08;
+    var total=pc+wc+gc+hc;
+    var laborRate= t==='board'?18: t==='hitensile'?7: t==='poly'?0.5:3;
+    var labor=L*laborRate;
+    $('r-cost').textContent=usd(total);
+    $('r-perft').textContent='materials, '+ (L?('$'+(total/L).toFixed(2)+' per foot'):'');
+    $('r-len').textContent=fmt(L)+' ft'+(m!=='len'?' (computed)':'');
+    $('r-posts').textContent=fmt(posts)+' @ '+sp+' ft';
+    $('r-cposts').textContent=fmt(cposts);
+    $('r-rails').textContent=fmt(rails);
+    $('r-wire').textContent= t==='woven'?fmt(netLen)+' ft ('+Math.ceil(netLen/330)+' rolls of 330)': t==='board'? fmt(wireFt)+' ft of board ('+Math.ceil(wireFt/16)+' 16-ft boards)': fmt(wireFt)+' ft ('+Math.ceil(wireFt/(t==='barbed'?1320:4000))+' rolls)';
+    $('r-hw').textContent=hw;
+    $('r-gates').textContent=fmt(gates);
+    $('r-pc').textContent=usd(pc); $('r-wc').textContent=usd(wc); $('r-gc').textContent=usd(gc); $('r-hc').textContent=usd(hc);
+    $('r-labor').textContent='+ '+usd(labor);
+    $('r-note').textContent='Prices are yours to edit; defaults are 2026 farm-store averages. Buy 5% extra wire for splices and sag.';
+    last='Fence: '+fmt(L)+' ft '+o.text+'. '+posts+' line posts @ '+sp+' ft, '+cposts+' corner/brace posts, '+rails+' rails, '+$('r-wire').textContent+', '+hw+', '+gates+' gates. Materials ≈ '+usd(total)+' ($'+(L?(total/L).toFixed(2):'0')+'/ft); hired labor ≈ '+usd(labor)+'.';
+  }
+  f.mode.addEventListener('change',function(){showMode();calc();});
+  f.type.addEventListener('change',function(){ var o=f.type.options[f.type.selectedIndex]; f.spacing.value=o.getAttribute('data-sp'); f.wp.value=o.getAttribute('data-ppf'); calc(); });
+  Object.keys(f).forEach(function(k){ f[k].addEventListener('input',calc); });
+  $('fcform').addEventListener('submit',function(e){e.preventDefault();calc();});
+  $('reset').addEventListener('click',function(){ f.mode.value='len';showMode();f.len.value=1320;f.dl.value=400;f.dw.value=250;f.ac.value=5;f.type.selectedIndex=0;f.spacing.value=10;f.corners.value=4;f.gates.value=2;f.pp.value=6;f.cp.value=22;f.wp.value=1.10;f.gp.value=160;calc(); });
+  $('copy').addEventListener('click',function(){
+    var done=function(){$('copied').hidden=false;setTimeout(function(){$('copied').hidden=true},1800)};
+    function fallback(){var t=document.createElement('textarea');t.value=last;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(last).then(done,fallback)}else{fallback()}
+  });
+  showMode(); calc();
+})();
+</script>
+</body>
+</html>
