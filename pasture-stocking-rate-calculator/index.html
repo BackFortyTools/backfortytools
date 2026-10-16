@@ -113,6 +113,16 @@ footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
 
+.related{margin-top:40px;border-top:2px solid var(--fg);padding-top:16px}
+.related h2{font-family:var(--display);font-size:1.25rem;margin:0 0 12px}
+.related ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.related li{min-width:0}
+.related ul a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);padding:14px 16px;color:inherit;text-decoration:none}
+.related ul a:hover,.related ul a:focus-visible{border-color:var(--tag);outline:none}
+.related strong{display:block;font-family:var(--display);font-size:1.02rem}
+.related span{color:var(--muted);font-size:.92rem}
+.related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
+
 </style>
 </head>
 <body>
@@ -243,6 +253,7 @@ footer a{color:var(--accent)}
 <details><summary>How many horses per acre?</summary><p>Plan on 2 acres for the first horse and 1 to 2 more for each additional horse. Horses graze closer than cattle and damage pasture faster, so rotation matters even more.</p></details>
 <details><summary>What is an animal unit?</summary><p>A 1,000-pound cow with or without a calf under six months, eating about 26 pounds of dry forage a day. Every other animal is expressed as a fraction or multiple of that.</p></details>
 </article>
+<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul><li><a href="/winter-hay-calculator/"><strong>Winter Hay Calculator</strong><span>Bales and tons for the season</span></a></li><li><a href="/fence-calculator/"><strong>Farm Fence Calculator</strong><span>Posts, wire and cost</span></a></li><li><a href="/beef-yield-calculator/"><strong>Half a Cow Calculator</strong><span>Take-home beef and real cost</span></a></li></ul><a class="all" href="/">All calculators →</a></nav>
 <footer>
   Animal-unit values and forage yields from UGA Extension, Mississippi State Extension and the USDA NRCS grazing guides. Estimates only.<br>
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.

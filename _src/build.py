@@ -10,8 +10,38 @@ FONTS='https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=S
 TODAY=datetime.date.today().isoformat()
 IMPACT_TAG='<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})(\'https://utt.impactcdn.com/P-A7917150-9175-4770-95e5-6a4ddcaab8cf1.js\',\'script\',\'impactStat\',document,window);impactStat(\'trackImpression\');</script>'
 
+RELATED={
+ 'winter-hay-calculator':['pasture-stocking-rate-calculator','fence-calculator','beef-yield-calculator'],
+ 'pasture-stocking-rate-calculator':['winter-hay-calculator','fence-calculator','beef-yield-calculator'],
+ 'fence-calculator':['pasture-stocking-rate-calculator','gravel-dirt-concrete-calculator','winter-hay-calculator'],
+ 'chicken-cost-calculator':['chicken-coop-size-calculator','fence-calculator','winter-hay-calculator'],
+ 'chicken-coop-size-calculator':['chicken-cost-calculator','gravel-dirt-concrete-calculator','fence-calculator'],
+ 'deer-meat-yield-calculator':['beef-yield-calculator','brisket-smoking-time-calculator','firewood-calculator'],
+ 'beef-yield-calculator':['deer-meat-yield-calculator','brisket-smoking-time-calculator','pasture-stocking-rate-calculator'],
+ 'brisket-smoking-time-calculator':['beef-yield-calculator','deer-meat-yield-calculator','firewood-calculator'],
+ 'firewood-calculator':['gravel-dirt-concrete-calculator','deer-meat-yield-calculator','fence-calculator'],
+ 'gravel-dirt-concrete-calculator':['fence-calculator','firewood-calculator','chicken-coop-size-calculator'],
+}
+NAMES={
+ 'winter-hay-calculator':('Winter Hay Calculator','Bales and tons for the season'),
+ 'pasture-stocking-rate-calculator':('Pasture Stocking Rate','How many head your acres carry'),
+ 'fence-calculator':('Farm Fence Calculator','Posts, wire and cost'),
+ 'chicken-cost-calculator':('Chicken Cost Calculator','Cost per dozen eggs'),
+ 'chicken-coop-size-calculator':('Chicken Coop Size','Coop, run and nest boxes'),
+ 'deer-meat-yield-calculator':('Deer Meat Yield','Pounds of venison, cut by cut'),
+ 'beef-yield-calculator':('Half a Cow Calculator','Take-home beef and real cost'),
+ 'brisket-smoking-time-calculator':('Brisket Start Time','When to light the smoker'),
+ 'firewood-calculator':('Firewood Calculator','Cords for the winter'),
+ 'gravel-dirt-concrete-calculator':('Gravel, Dirt & Concrete','Yards, tons and truckloads'),
+}
+def related_html(slug):
+    if slug not in RELATED: return ''
+    lis=''.join(f'<li><a href="/{r}/"><strong>{NAMES[r][0]}</strong><span>{NAMES[r][1]}</span></a></li>' for r in RELATED[slug])
+    return f'<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul>{lis}</ul><a class="all" href="/">All calculators →</a></nav>\n'
+
 def page(slug, title, h1_title, desc, body, faqs=None, app_name=None, extra_schema=None):
     url=f'{SITE}/{slug}/' if slug else SITE+'/'
+    if slug and '<footer>' in body: body=body.replace('<footer>',related_html(slug)+'<footer>',1)
     graph=[]
     if app_name:
         graph.append({"@type":"WebApplication","name":app_name,"url":url,"applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":desc,"isPartOf":{"@type":"WebSite","name":"Back Forty Tools","url":SITE+'/'}})

@@ -113,6 +113,16 @@ footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
 
+.related{margin-top:40px;border-top:2px solid var(--fg);padding-top:16px}
+.related h2{font-family:var(--display);font-size:1.25rem;margin:0 0 12px}
+.related ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.related li{min-width:0}
+.related ul a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);padding:14px 16px;color:inherit;text-decoration:none}
+.related ul a:hover,.related ul a:focus-visible{border-color:var(--tag);outline:none}
+.related strong{display:block;font-family:var(--display);font-size:1.02rem}
+.related span{color:var(--muted);font-size:.92rem}
+.related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
+
 </style>
 </head>
 <body>
@@ -246,6 +256,7 @@ footer a{color:var(--accent)}
 <details><summary>How many 80 lb bags of concrete make a yard?</summary><p>45 bags. Each 80-pound bag yields 0.6 cubic feet and a cubic yard is 27 cubic feet. A 60-pound bag yields 0.45 cubic feet, so 60 of those.</p></details>
 <details><summary>How much topsoil do I need to cover 1,000 square feet?</summary><p>At 2 inches deep, 6.2 cubic yards, which is about 7 tons loose. At 4 inches, 12.4 yards. Order 10 to 20 percent extra; topsoil settles.</p></details>
 </article>
+<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul><li><a href="/fence-calculator/"><strong>Farm Fence Calculator</strong><span>Posts, wire and cost</span></a></li><li><a href="/firewood-calculator/"><strong>Firewood Calculator</strong><span>Cords for the winter</span></a></li><li><a href="/chicken-coop-size-calculator/"><strong>Chicken Coop Size</strong><span>Coop, run and nest boxes</span></a></li></ul><a class="all" href="/">All calculators →</a></nav>
 <footer>
   Material densities from the National Stone, Sand and Gravel Association and USDA NRCS engineering tables; prices from 2026 Southeastern quarry and ready-mix averages. Estimates only.<br>
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.

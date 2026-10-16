@@ -113,6 +113,16 @@ footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
 
+.related{margin-top:40px;border-top:2px solid var(--fg);padding-top:16px}
+.related h2{font-family:var(--display);font-size:1.25rem;margin:0 0 12px}
+.related ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.related li{min-width:0}
+.related ul a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);padding:14px 16px;color:inherit;text-decoration:none}
+.related ul a:hover,.related ul a:focus-visible{border-color:var(--tag);outline:none}
+.related strong{display:block;font-family:var(--display);font-size:1.02rem}
+.related span{color:var(--muted);font-size:.92rem}
+.related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
+
 </style>
 </head>
 <body>
@@ -255,6 +265,7 @@ footer a{color:var(--accent)}
 <details><summary>Should I subtract grain from the hay number?</summary><p>Yes, if you feed a meaningful amount. Total dry-matter intake stays near 2% of body weight, so every pound of grain displaces roughly a pound of hay. The calculator does this when you enter a grain amount.</p></details>
 <details><summary>Is it better to buy all my winter hay at once?</summary><p>Usually. Late-summer and early-fall prices are lowest and the quality is best. By February supply is thin and whatever is left is often the hay nobody wanted in September.</p></details>
 </article>
+<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul><li><a href="/pasture-stocking-rate-calculator/"><strong>Pasture Stocking Rate</strong><span>How many head your acres carry</span></a></li><li><a href="/fence-calculator/"><strong>Farm Fence Calculator</strong><span>Posts, wire and cost</span></a></li><li><a href="/beef-yield-calculator/"><strong>Half a Cow Calculator</strong><span>Take-home beef and real cost</span></a></li></ul><a class="all" href="/">All calculators →</a></nav>
 <footer>
   Formulas and waste rates from NC State Extension, University of Maryland Extension, University of Minnesota equine research and Oregon State Small Farms. Estimates only.<br>
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.

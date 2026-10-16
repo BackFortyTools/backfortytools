@@ -113,6 +113,16 @@ footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
 
+.related{margin-top:40px;border-top:2px solid var(--fg);padding-top:16px}
+.related h2{font-family:var(--display);font-size:1.25rem;margin:0 0 12px}
+.related ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.related li{min-width:0}
+.related ul a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);padding:14px 16px;color:inherit;text-decoration:none}
+.related ul a:hover,.related ul a:focus-visible{border-color:var(--tag);outline:none}
+.related strong{display:block;font-family:var(--display);font-size:1.02rem}
+.related span{color:var(--muted);font-size:.92rem}
+.related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
+
 </style>
 </head>
 <body>
@@ -232,6 +242,7 @@ footer a{color:var(--accent)}
 <details><summary>How many nest boxes for 10 chickens?</summary><p>Three. One box per four hens is plenty; they'll all want the same one anyway.</p></details>
 <details><summary>Do chickens need a run if they free-range?</summary><p>Yes, for the days you can't let them out and for the first week in a new place. Size it at 8 square feet per bird instead of 10.</p></details>
 </article>
+<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul><li><a href="/chicken-cost-calculator/"><strong>Chicken Cost Calculator</strong><span>Cost per dozen eggs</span></a></li><li><a href="/gravel-dirt-concrete-calculator/"><strong>Gravel, Dirt & Concrete</strong><span>Yards, tons and truckloads</span></a></li><li><a href="/fence-calculator/"><strong>Farm Fence Calculator</strong><span>Posts, wire and cost</span></a></li></ul><a class="all" href="/">All calculators →</a></nav>
 <footer>
   Space, roost and nest guidelines from the University of Kentucky, Penn State and Oregon State poultry extension programs. Estimates only.<br>
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.

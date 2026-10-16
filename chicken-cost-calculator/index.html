@@ -113,6 +113,16 @@ footer{margin-top:48px;border-top:2px solid var(--fg);padding-top:14px;font-size
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.tag .big{transition:opacity .15s}}
 
+.related{margin-top:40px;border-top:2px solid var(--fg);padding-top:16px}
+.related h2{font-family:var(--display);font-size:1.25rem;margin:0 0 12px}
+.related ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.related li{min-width:0}
+.related ul a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);padding:14px 16px;color:inherit;text-decoration:none}
+.related ul a:hover,.related ul a:focus-visible{border-color:var(--tag);outline:none}
+.related strong{display:block;font-family:var(--display);font-size:1.02rem}
+.related span{color:var(--muted);font-size:.92rem}
+.related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
+
 </style>
 </head>
 <body>
@@ -226,6 +236,7 @@ footer a{color:var(--accent)}
 <details><summary>How long does a chicken coop take to pay for itself?</summary><p>A $600 setup with six hens saving $2 a dozen versus store eggs pays off in about two and a half years. Buying chicks instead of pullets and building the coop from scrap can cut that to a year.</p></details>
 <details><summary>How much feed does a chicken eat per day?</summary><p>A standard laying hen eats about 4 ounces (a quarter pound) a day. Bantams eat half that; big dual-purpose breeds up to 5 ounces.</p></details>
 </article>
+<nav class="related" aria-label="Related calculators"><h2>Related calculators</h2><ul><li><a href="/chicken-coop-size-calculator/"><strong>Chicken Coop Size</strong><span>Coop, run and nest boxes</span></a></li><li><a href="/fence-calculator/"><strong>Farm Fence Calculator</strong><span>Posts, wire and cost</span></a></li><li><a href="/winter-hay-calculator/"><strong>Winter Hay Calculator</strong><span>Bales and tons for the season</span></a></li></ul><a class="all" href="/">All calculators →</a></nav>
 <footer>
   Feed intake and lay rates from Oklahoma State Extension, Tennessee State Extension and the University of Kentucky poultry program. Estimates only.<br>
   Part of <a href="/">Back Forty Tools</a>, free calculators for the farm, the barn and the woods.
