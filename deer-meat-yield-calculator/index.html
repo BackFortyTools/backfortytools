@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Deer Meat Yield Calculator", "url": "https://backfortytools.com/deer-meat-yield-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "A 130 lb field-dressed deer yields about 52 lb of boneless venison. Enter live weight, field-dressed weight or chest girth to see your deer's yield, cut by cut, plus freezer space.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much meat do you get from a 150 lb deer?", "acceptedAnswer": {"@type": "Answer", "text": "If 150 pounds is the field-dressed weight, expect about 60 pounds of boneless venison with a clean shot. If it is the live weight, field-dressed will be around 117 pounds and the meat about 47 pounds."}}, {"@type": "Question", "name": "How much meat from a 100 lb doe?", "acceptedAnswer": {"@type": "Answer", "text": "A 100-pound field-dressed doe yields roughly 40 pounds of boneless meat. Does are often the better-eating deer because they carry more fat and no rut stress."}}, {"@type": "Question", "name": "What percentage of a deer is meat?", "acceptedAnswer": {"@type": "Answer", "text": "About 40% of field-dressed weight, or about 31% of live weight, ends up as boneless trimmed venison. Bone-in cuts raise the number to around 50% of field-dressed weight."}}, {"@type": "Question", "name": "How many pounds of meat does a deer processor give back?", "acceptedAnswer": {"@type": "Answer", "text": "Reputable processors return 38 to 45 pounds per 100 pounds field-dressed. If you are consistently getting back less than 35%, ask whether you are getting your own deer back."}}, {"@type": "Question", "name": "How much freezer space does a deer take?", "acceptedAnswer": {"@type": "Answer", "text": "About 1.5 cubic feet for an average 50-pound yield. Plan on 35 pounds of packaged meat per cubic foot of freezer."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Deer Meat Yield Calculator", "url": "https://backfortytools.com/deer-meat-yield-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "A 130 lb field-dressed deer yields about 52 lb of boneless venison. Enter live weight, field-dressed weight or chest girth to see your deer's yield, cut by cut, plus freezer space.", "isPartOf": {"@type": "WebSite", "name": "Back Forty Tools", "url": "https://backfortytools.com/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much meat from a 100 pound deer?", "acceptedAnswer": {"@type": "Answer", "text": "About 41 pounds of boneless venison if 100 pounds is the field-dressed weight, or about 32 pounds if it is the live weight. A clean neck or behind-the-shoulder shot and quick cooling keep you at the top of that range."}}, {"@type": "Question", "name": "How much meat do you get from a 150 lb deer?", "acceptedAnswer": {"@type": "Answer", "text": "If 150 pounds is the field-dressed weight, expect about 60 pounds of boneless venison with a clean shot. If it is the live weight, field-dressed will be around 117 pounds and the meat about 47 pounds."}}, {"@type": "Question", "name": "How much meat from a 100 lb doe?", "acceptedAnswer": {"@type": "Answer", "text": "A 100-pound field-dressed doe yields roughly 40 pounds of boneless meat. Does are often the better-eating deer because they carry more fat and no rut stress."}}, {"@type": "Question", "name": "What percentage of a deer is meat?", "acceptedAnswer": {"@type": "Answer", "text": "About 40% of field-dressed weight, or about 31% of live weight, ends up as boneless trimmed venison. Bone-in cuts raise the number to around 50% of field-dressed weight."}}, {"@type": "Question", "name": "How many pounds of meat does a deer processor give back?", "acceptedAnswer": {"@type": "Answer", "text": "Reputable processors return 38 to 45 pounds per 100 pounds field-dressed. If you are consistently getting back less than 35%, ask whether you are getting your own deer back."}}, {"@type": "Question", "name": "How much freezer space does a deer take?", "acceptedAnswer": {"@type": "Answer", "text": "About 1.5 cubic feet for an average 50-pound yield. Plan on 35 pounds of packaged meat per cubic foot of freezer."}}]}]}</script>
 <style>
 /* Layout: ledger-style — one calculator card up top, results in a barn-tag strip, then plain-spoken reference copy in a single reading column. */
 :root{
@@ -123,15 +123,35 @@ footer a{color:var(--accent)}
 .related span{color:var(--muted);font-size:.92rem}
 .related .all{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
 
+.quick{margin-top:20px;display:grid;gap:12px}
+.quick-ans{background:var(--tag);color:var(--tag-ink);padding:16px 20px}
+.quick-ans .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;opacity:.85}
+.quick-ans p{margin:.3rem 0 0;font-size:1.08rem;max-width:68ch}
+.quick table{background:var(--surface)}
+.quick caption{text-align:left;font-family:var(--display);font-weight:700;font-size:1.1rem;padding:0 0 8px}
+.quick .note{margin:0}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
   <div class="kicker"><a href="/" style="color:inherit;text-decoration:none">Back Forty Tools</a> · Hunting & processing</div>
-  <h1>How much meat will your deer yield?</h1>
+  <h1>How much meat do you get from a deer?</h1>
   <p class="lede">Enter the weight you have (or just a chest girth) and where you hit it. We work it down from live weight to the pounds of venison you'll actually wrap, cut by cut.</p>
 </header>
+<section class="quick" aria-label="Quick answer">
+  <div class="quick-ans">
+    <div class="lbl">Quick answer</div>
+    <p><strong>A deer gives about 40% of its field-dressed weight as boneless meat.</strong> A 100 lb field-dressed deer yields about <strong>41 lb</strong> of venison; a 150 lb buck about <strong>62 lb</strong>. From live weight, figure about 32%.</p>
+  </div>
+  <div class="tbl"><table>
+    <caption>Deer meat yield chart</caption>
+    <thead><tr><th>Field-dressed</th><th>Live weight (approx.)</th><th>Boneless meat</th><th>Typical range</th><th>Freezer space</th></tr></thead>
+    <tbody><tr><td>80 lb</td><td>105 lb</td><td><strong>33 lb</strong></td><td>30–38 lb</td><td>0.9 cu ft</td></tr><tr><td>100 lb</td><td>130 lb</td><td><strong>41 lb</strong></td><td>37–47 lb</td><td>1.2 cu ft</td></tr><tr><td>120 lb</td><td>155 lb</td><td><strong>50 lb</strong></td><td>45–57 lb</td><td>1.4 cu ft</td></tr><tr><td>140 lb</td><td>180 lb</td><td><strong>58 lb</strong></td><td>52–66 lb</td><td>1.7 cu ft</td></tr><tr><td>160 lb</td><td>205 lb</td><td><strong>66 lb</strong></td><td>59–76 lb</td><td>1.9 cu ft</td></tr><tr><td>180 lb</td><td>230 lb</td><td><strong>74 lb</strong></td><td>67–85 lb</td><td>2.1 cu ft</td></tr><tr><td>200 lb</td><td>255 lb</td><td><strong>82 lb</strong></td><td>74–95 lb</td><td>2.4 cu ft</td></tr></tbody>
+  </table></div>
+  <p class="note">Use the calculator below for your exact deer, shot placement and how you'll cut it.</p>
+</section>
 <section class="calc" aria-label="Deer meat yield calculator">
   <form class="panel" id="deerform" autocomplete="off">
     <h2>Your deer</h2>
@@ -245,6 +265,7 @@ footer a{color:var(--accent)}
   <p>In Georgia and most of the Southeast, basic processing (skin, cut, wrap, ground) runs $90 to $140 per deer in 2026, with sausage, jerky and cubed steak extra. On a 50-pound deer that is about $2.20 a pound before your tag, gas and gear. Do it yourself with a $150 grinder and a $100 vacuum sealer and the gear pays for itself on the second deer.</p>
 
   <h2>Frequently asked</h2>
+<details><summary>How much meat from a 100 pound deer?</summary><p>About 41 pounds of boneless venison if 100 pounds is the field-dressed weight, or about 32 pounds if it is the live weight. A clean neck or behind-the-shoulder shot and quick cooling keep you at the top of that range.</p></details>
 <details><summary>How much meat do you get from a 150 lb deer?</summary><p>If 150 pounds is the field-dressed weight, expect about 60 pounds of boneless venison with a clean shot. If it is the live weight, field-dressed will be around 117 pounds and the meat about 47 pounds.</p></details>
 <details><summary>How much meat from a 100 lb doe?</summary><p>A 100-pound field-dressed doe yields roughly 40 pounds of boneless meat. Does are often the better-eating deer because they carry more fat and no rut stress.</p></details>
 <details><summary>What percentage of a deer is meat?</summary><p>About 40% of field-dressed weight, or about 31% of live weight, ends up as boneless trimmed venison. Bone-in cuts raise the number to around 50% of field-dressed weight.</p></details>

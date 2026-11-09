@@ -1,5 +1,5 @@
-node_modules/
-package.json
-package-lock.json
-_shots/
 __pycache__/
+_shots/
+node_modules/
+package-lock.json
+package.json
